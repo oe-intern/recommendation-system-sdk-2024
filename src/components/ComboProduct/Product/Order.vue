@@ -1,23 +1,19 @@
 <template lang="pug">
-  <aside class="order-summary">
-    <h3 class="summary-title">Order summary</h3>
-    <div class="summary-details">
-      <div class="summary-labels">
-        <p>subtotal</p>
-        <p>shipping</p>
-        <p>tax</p>
-        <p class="total-label">total</p>
-      </div>
-      <div class="summary-values">
-        <p class="subtotal-value">{{ subtotal }}</p>
-        <div class="additional-costs">
-          <p>{{ shipping.toFixed(2) }}</p>
-          <p>{{ tax.toFixed(2) }}</p>
-        </div>
-        <p class="total-value">{{ total.toFixed(2) }}</p>
-      </div>
-    </div>
-  </aside>
+  aside.order-summary
+    h3.summary-title Order summary
+    .summary-details
+      .summary-labels
+        p subtotal
+        p shipping
+        p tax
+        p.total-label total
+      div
+        p {{ subtotal }}
+        //FIXME - fix this
+        .additional-costs
+          p {{ shipping.toFixed(2) }}
+          p {{ tax.toFixed(2) }}
+        p.total-value {{ total.toFixed(2) }}
 </template>
 //LINK -
 <script setup lang="ts">
@@ -25,8 +21,7 @@ import { inject, defineProps, ref } from 'vue'
 const subtotal = inject( 'subtotal' )
 const tax = inject( 'tax' )
 const total = inject( 'total' )
-const shipping = inject( 'shipping' )
-shipping.value += 1;
+const shipping = inject('shipping')
 </script>
 
 <style scoped>

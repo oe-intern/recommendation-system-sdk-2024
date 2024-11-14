@@ -6,13 +6,21 @@
       product(:product="product")
     div.order
       Order
+
+  //- product(:product="products[0]") @child-action="handleChildAction"
+
+  <Product :product="products[0]" @child-action="handleChildAction" />
+
 </template>
 
 <script setup lang="ts">
-import { reactive, provide, inject, ref } from 'vue'
+import { reactive, provide, ref } from 'vue'
 import Product from './Product/Product.vue'
 import Order from './Product/Order.vue'
-
+function handleChildAction() {
+  console.log('Child component says:', "curr");
+  // Handle the action here
+}
 const products = reactive([
   {
     name: 'Heirloom tomato',
@@ -33,7 +41,7 @@ const products = reactive([
     numBuy: 2,
   },
 ])
-const subTotal = ref<number>(0)
+const subTotal = ref(0)
 const shipping = ref<number>(2)
 const tax = ref<number>(0)
 const total = ref<number>(0)
@@ -42,6 +50,20 @@ provide('shipping', shipping);
 provide('subtotal', subTotal);
 provide('tax', tax);
 provide('total', total);
+
+function calculateOrder(){
+  //  for(var i = 0; i < products.length; i++){
+  //     subTotal.value += products[i].price * products[i].numBuy;
+  //  }
+
+   tax.value = subTotal.value * 0.1;
+   total.value = subTotal.value + tax.value + shipping.value;
+}
+
+calculateOrder()
+
+
+
 </script>
 
 <style scoped>
