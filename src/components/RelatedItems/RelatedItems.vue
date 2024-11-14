@@ -5,20 +5,12 @@
     //- <h2 class="related-items__title">More things you find</h2>
     .related-items__grid
       Item(v-for="item in items" :key="item.image" :item="item")
-  //- <section class="related-items">
-  //-   Text(as="related-items__title") More thing you find
-  //-   //- <h2 class="related-items__title">More things you find</h2>
-  //-   <div class="related-items__grid">
-  //-     <Item v-for="item in items" :key="item.image" :item="item" />
-  //-   </div>
-  //- </section>
 </template>
 
 <script setup lang="ts">
 import { reactive} from 'vue'
 import Item from './Item/Item.vue'
 // import { Redirect } from '@shopify/app-bridge/actions';
-
 // const redirect = Redirect.create(this.$app); // assuming you have App Bridge instance as $app
 // redirect.dispatch(Redirect.Action.APP, '/path/to/product-page');
 

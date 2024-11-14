@@ -9,19 +9,19 @@
         p.total-label total
       div
         p {{ subtotal }}
-        //FIXME - fix this
         .additional-costs
           p {{ shipping.toFixed(2) }}
           p {{ tax.toFixed(2) }}
-        p.total-value {{ total.toFixed(2) }}
+        p.total-value {{ total }}
 </template>
+
 //LINK -
 <script setup lang="ts">
-import { inject, defineProps, ref } from 'vue'
-const subtotal = inject( 'subtotal' )
-const tax = inject( 'tax' )
-const total = inject( 'total' )
-const shipping = inject('shipping')
+import { inject } from 'vue'
+const subtotal = inject<number>('subtotal') ?? 0
+const tax = inject<number>('tax') ?? 0
+const total = inject<number>('total') ?? 0
+const shipping = inject<number>('shipping') ?? 0
 </script>
 
 <style scoped>

@@ -7,11 +7,11 @@
       <input type="text" v-model="product.numBuy" @input="updatePayment" />
     .product-payment
       Text(as="h2", variant="headingMd") {{ productPayment }}
-    <button @click="notifyParent">Click me to notify parent</button>
+    button(@click="notifyParent") Click me
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref, inject } from 'vue'
+import { defineProps, ref, inject, Ref } from 'vue'
 const productPayment = ref(0)
 interface Product {
   name: string
@@ -19,30 +19,32 @@ interface Product {
   image: string
   numBuy: number
 }
-const subtotal = inject<number>( 'subtotal' )
-const tax = inject( 'tax' )
-const total = inject( 'total' )
-const shipping = inject<number>('shipping')
+const subtotal = inject<Ref<number>>('subtotal') ?? ref(0)
+const tax = inject<Ref<number>>('tax') ?? ref(0)
+const total = inject<Ref<number>>('total') ?? ref(0)
+const shipping = inject<Ref<number>>('shipping') ?? ref(0)
 
 const props = defineProps<{ product: Product }>()
 const emit = defineEmits<{
-  (event: 'child-action', message: string): void;
-}>();
+  (event: 'child-action', message: string): void
+}>()
 
 // Define a function to emit the event
 function notifyParent() {
   alert('You clicked me')
-  emit('child-action', 'Hello from child');
+  emit('child-action', 'Hello from child')
 }
 
 function updatePayment() {
-  const TEMP = productPayment.value;
+  const TEMP = productPayment.value
   productPayment.value = props.product.price * props.product.numBuy
   //FIXME - fix this
-  if(isNaN(productPayment.value))
-    subtotal.value += productPayment.value - TEMP;
+  if (!isNaN(productPayment.value)) {
+    subtotal.value += productPayment.value - TEMP
+    tax.value = subtotal.value * 0.1
+    total.value = subtotal.value + shipping.value + tax?.value
+  }
 }
-
 
 updatePayment()
 </script>

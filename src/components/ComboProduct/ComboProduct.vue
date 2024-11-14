@@ -7,8 +7,6 @@
     div.order
       Order
 
-  //- product(:product="products[0]") @child-action="handleChildAction"
-
   <Product :product="products[0]" @child-action="handleChildAction" />
 
 </template>
@@ -41,10 +39,10 @@ const products = reactive([
     numBuy: 2,
   },
 ])
-const subTotal = ref(0)
-const shipping = ref<number>(2)
-const tax = ref<number>(0)
-const total = ref<number>(0)
+let subTotal = ref(0)
+let shipping = ref<number>(2)
+let tax = ref<number>(0)
+let total = ref<number>(0)
 
 provide('shipping', shipping);
 provide('subtotal', subTotal);
