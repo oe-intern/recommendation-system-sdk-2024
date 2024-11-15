@@ -83,7 +83,7 @@ const items = reactive([
 
 <style scoped>
 .related-items {
-  background-color: #fff;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
