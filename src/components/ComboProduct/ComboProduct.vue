@@ -1,14 +1,16 @@
 <template lang="pug">
 .combo-product
-  Text.text-need-to-buy(style="font-size: 40px; color: black;") need to buy
-  .product-container
-    ul.list-products
-      li.list-product(v-for="product in products" :key="product.image")
-        product(:product="product")
-    //- div.order
-    .order
-      Order
-    //- Text()
+  //- Text.text-need-to-buy() Need to buy
+  Text.text-need-to-buy() frequent bought together
+  <br />
+  //- .product-container
+  ul.list-products
+    li.list-product(v-for="product in products" :key="product.image")
+      product(:product="product")
+  //- div.order
+  //- .order
+  //-   Order
+  //- <p>hello {{ productId }}</p>
 </template>
 
 <script setup lang="ts">
@@ -18,7 +20,7 @@ import Order from './Product/Order.vue'
 const products = reactive([
   {
     name: 'Heirloom tomato',
-    price: 5.99,
+    price: 6.99,
     image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a771c70f5cbef8baa4a6355e23147a14b252ed3fefbd754de62a9e87b208ba43?placeholderIfAbsent=true&apiKey=3786680e13174bd88bc8c99173311cdc',
     numBuy: 1,
   },
@@ -36,7 +38,7 @@ const products = reactive([
   },
 ])
 let subTotal = ref<number>(0)
-let shipping = ref<number>(2)
+let shipping = ref<number>(0)
 let tax = ref<number>(0)
 let total = ref<number>(0)
 
@@ -45,52 +47,39 @@ provide('subtotal', subTotal);
 provide('tax', tax);
 provide('total', total);
 
-function calculateOrder(){
-   for(var i = 0; i < products.length; i++){
-      subTotal.value += products[i].price * products[i].numBuy;
-   }
-
-   tax.value = subTotal.value * 0.1;
-   total.value = subTotal.value + tax.value + shipping.value;
-}
-
-calculateOrder()
 
 </script>
 
 <style scoped>
 .text-need-to-buy {
-  font-family: 'Newsreader';
+  font: 900 70px/1.3 Inter, sans-serif;
+  color: black;
+  font-family: 'Times';
   font-style: normal;
   font-weight: 400;
   line-height: 120%;
   display: flex;
   align-items: flex-end;
 }
+
 .combo-product {
-  /* background-color: #e6e6e6; */
+  padding: 0%;
   background-color: rgb(255, 255, 255);
 }
+
 .product-container {
   display: flex;
   position: relative;
   gap: 5%;
 }
-.order {
-  width: 30%;
-}
+
 .list-products {
-  /* display: flex; */
-  width: 70%;
-  flex-wrap: wrap; /* Allow products to wrap to the next line if necessary */
-  gap: 20px; /* Add space between the product items */
-  /* flex: 1;  */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  padding: 0%;
+  flex-wrap: wrap;
 }
-.list-product {
-  gap: 20px; /* Add space between the product items */
-  /* width: 60%; */
-  /* background-color: #6b6b6b; */
-  padding: 20px;
-  /* border: 1px solid #ccc; */
-}
+
 </style>
