@@ -1,21 +1,24 @@
 <template lang="pug">
   aside.order-summary
+    Text
     h3.summary-title Order summary
     .summary-details
       .summary-labels
-        p.price-item subtotal
-        p.price-item shipping
-        p.price-item tax
-        p.total-label total
+        p.price-item Subtotal
+        p.price-item Shipping
+        p.price-item Tax
+        p.total-label Total
       .summary-labels
         p.price-subtotal {{ subtotal.toFixed(2) }}
         p.price-item {{ shipping.toFixed(2) }}
         p.price-item {{ tax.toFixed(2) }}
-        p.total-value {{ total.toFixed(2) }}
+        p.total-value ${{ total.toFixed(2) }}
     button.add-to-cart-button
-      span(style="font-size: 25px;") Add to cart
-      <img src="./icon/arrow-right-solid.svg" alt="Description of SVG" style="width: 25px;" />
-      //- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/436b738744905f60c6a542e2cd314f5694db20045d36b8991f8dab9a31b316a0?placeholderIfAbsent=true&apiKey=3786680e13174bd88bc8c99173311cdc" alt="" class="cart-icon" />
+      span(style="font-size: 33px; margin-left: 15px;") Add to cart
+      //- <img src="./icon/arrow-right-solid.svg" alt="Description of SVG" style="width: 25px;" />
+      img(src="./icon/arrow.svg" alt="Description of SVG", :style="{ width: '35px', marginRight: '10px', cursor: 'pointer' }")
+      //- <img src="./icon/arrow.svg" alt="Description of SVG" style="width: 25px; margin-right: 10px;" />
+    Text
 </template>
 
 <script setup lang="ts">
@@ -28,42 +31,45 @@ const shipping = inject<number>('shipping') ?? 0
 
 <style scoped>
 .order-summary {
-  gap: 16px;
+  gap: 36px;
   border-radius: 20px;
   border: 2px solid #e6e6e6;
-  /* width: 150%; */
-  background-color: #fafaf5;
+  /* background-color: #fafaf5; */
   display: flex;
-  /* height: 250%; */
-  max-width: 395px;
+  height: auto;
+  width: auto;
+  /* max-width: 500px; */
   flex-direction: column;
-  /* padding: 24px; */
+  align-content: center;
+  padding: 24px;
   font: 16px/1.3 Inter, sans-serif;
-  /* border: 2px solid #e6e6e6; */
 }
 .summary-labels {
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   font-size: 17px;
   font-weight: 600;
-  color: black;
+  /* color: black; */
 }
 .summary-details {
+  align-content: center;
+  align-items: center;
+  /* margin-left: 20%; */
   display: flex;
-  gap: 40px;
-  margin-bottom: 10px;
+  gap: 30%;
 }
 
 .total-value {
-  color: black;
+  /* color: black; */
   font-weight: 800;
-  font-size: 25px;
+  font-size: 23px;
   margin-top: 13px;
 }
 .summary-title {
   font-size: 30px;
-  color: black;
+  /* color: black; */
   font-weight: 600;
   align-self: stretch;
   margin: 0 0 32px;
@@ -77,14 +83,20 @@ const shipping = inject<number>('shipping') ?? 0
 
 
 .price-item {
-  margin: 20px 0 0;
+  font: 20px/1.2 Newsreader, sans-serif;
+  margin-left: 20%;
+  /* margin: 20px 0 0; */
   color: black;
   margin-top: 0;
 }
 
 .add-to-cart-button {
-  border-radius: 8px;
-  background-color: #426b1f;
+  margin: 20px 20px 20px 20px;
+  align-self: center;
+  width: 80%;
+  /* height: 40px; */
+  border-radius: 13px;
+  /* background-color: #426b1f; */
   display: flex;
   margin-top: 32px;
   gap: 20px;
