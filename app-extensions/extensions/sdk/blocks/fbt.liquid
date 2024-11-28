@@ -1,0 +1,17 @@
+<div class="fbt-embed" data-product-id="{{product.id}}">
+</div>
+
+<script>
+  const id={{product.id}}
+  console.log('id', id)
+</script>
+
+{% schema %}
+  {
+    "name": "Bought Together",
+    "target": "section",
+    "enabled_on": {
+      "templates": ["*"]
+    }
+  }
+{% endschema %}
