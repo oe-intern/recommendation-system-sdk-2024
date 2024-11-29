@@ -1,2 +1,41 @@
-# This file stores configurations for your Shopify app.
-name = "Sdk scaffolding"
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "64f85a4aedc32e5989b233db6d6bc2ae"
+name = "test31"
+handle = "product-recommendation-59"
+application_url = "https://localhost"
+embedded = true
+
+[build]
+dev_store_url = "vtzy11.myshopify.com"
+include_config_on_deploy = true
+
+[access.admin]
+direct_api_mode = "online"
+embedded_app_direct_api_access = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_locales,read_orders,read_products,read_themes"
+
+[auth]
+redirect_urls = [ "https://localhost/authenticate" ]
+
+[webhooks]
+api_version = "2024-10"
+
+  [[webhooks.subscriptions]]
+  topics = [
+  "orders/create",
+  "products/create",
+  "products/delete",
+  "products/update",
+  "shop/update"
+]
+  uri = "https://4337-58-187-159-33.ngrok-free.app/webhook"
+
+[pos]
+embedded = false
+
+[app_preferences]
+url = "https://www.app.example.com/preferences"
