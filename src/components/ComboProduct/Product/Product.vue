@@ -1,10 +1,10 @@
 <template lang="pug">
   li.product
-    img.product__image(:src="product.image" alt="product image")
+    img.product__image(:src="product.featuredMedia.preview.image.url" alt="product image")
     .information
-      Text.title(as="h2", variant="headingMd") {{ product.name }}
-      Text.price(as="p", variant="body",) {{ product.price }}$
-      input.text(v-model="product.numBuy", @input="updatePayment", :style="{ width: '125px', fontSize: '25px', border: '1px solid #ccc', borderRadius: '20px', textAlign: 'center' }")
+      Text.title(as="h2", variant="headingMd", :style="{ color: color }") {{ product.title }}
+      Text.price(as="p", variant="body",) {{ product.priceRangeV2.maxVariantPrice.amount }} {{ product.priceRangeV2.maxVariantPrice.currencyCode }}
+      input.text(v-model="numBuy", @input="updatePayment", :style="{ width: '125px', fontSize: '25px', border: '1px solid #ccc', borderRadius: '20px', textAlign: 'center' }")
 
     #cart
       Text.payment(as="product-payment", variant="headingMd") {{ isNaN(productPayment) ? 'invalid quantity' : '$' + productPayment.toFixed(2) }}
@@ -13,38 +13,53 @@
         img.arrow(src="./icon/arrow.svg" alt="Description of SVG",)
 </template>
 
-//TODO - add number of items
-//TODO - layout type
-//TODO - background color
-//TODO - color
-//TODO - price color
-
 <script setup lang="ts">
 import { defineProps, inject, ref } from 'vue'
 let productPayment = ref(0)
-const numberOfItem = 3;
-const layoutType = 'horizontal';
-const backgroundColor = '#f4f4f4';
-const color = '#000';
-const priceColor = '#f4f4f4';
 
 interface Product {
-  name: string
-  price: number
-  image: string
-  numBuy: number
+  title: string
+  featuredMedia: object
+  priceRangeV2: {
+    maxVariantPrice: {
+      amount: string
+      currencyCode: string
+    }
+  }
+  //- div.order
+  //- .order
+  //-   Order
+  //- <p>hello {{ productId }}</p>ject
+  // name: string
+  // price: number
+  // image: string
+  // numBuy: number
 }
 
+const numBuy = ref(1)
 const subtotal = inject('subtotal', ref(0))
 const tax = inject('tax', ref(0))
 const total = inject('total', ref(0))
 const shipping = inject('shipping', ref(0))
-const props = defineProps<{ product: Product }>()
 
+const props = defineProps<{ product: Product, color: string }>()
+console.log("---------------------------------V2")
+console.log('props', props.product)
+// const color = inject('color');
+// const numberOfItem = inject('numberOfItem');
+// const layoutType = inject('layoutType');
+// const backgroundColor = inject('backgroundColor');
+// const priceColor = inject('priceColor');
+// color = 'rgba(80, 67, 51, 1)';
 
+// console.log("color: " + props.color);
+// console.log("numberOfItem: " + (numberOfItem ? numberOfItem.toString() : 'undefined'));
+// console.log("layoutType: " + (layoutType ? layoutType.toString() : 'undefined'));
+// const textElement = document.getElementsByClassName('title');
+// textElement.style.color = color;
 function updatePayment() {
   const TEMP = productPayment.value
-  productPayment.value = props.product.price * props.product.numBuy
+  productPayment.value = parseFloat(props.product.priceRangeV2.maxVariantPrice.amount) * numBuy
   if (!isNaN(TEMP)) {
     subtotal.value -= TEMP
   }
@@ -56,6 +71,32 @@ function updatePayment() {
 }
 
 updatePayment()
+// const pid = inject('pid');
+// const endpoint = 'https://8d65-58-187-163-127.ngrok-free.app/api/sdk/recommendation?product_id=123';
+const endpointPost = `https://localhost:443/api/sdk/interaction?product_id=${props.id}`;
+const options = {
+  method: 'POST',
+  headers: {
+    // 'Authorization': 'secret',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    product_id: props.id,
+    interaction_type: 'view'
+  })
+};
+
+function clickAddToCart() {
+  console.log('color: ');
+  request(endpoint, options)
+    .then(response => {
+      console.log('Success:', response);
+      products.push(...response.products);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 </script>
 
 <style scoped>
@@ -65,25 +106,14 @@ updatePayment()
 }
 
 .title {
-  color: black;
-  font-size: 30px;
+  /* color: black; */
+  font-size: 50px;
 }
 
 .price {
   color: orange;
   font-size: 55px;
 }
-
-/* .input-container {
-  position: absolute;
-  width: 128px;
-  height: 40px;
-  left: 184px;
-  top: 95px;
-  border: 2px solid rgba(0, 0, 0, 0.06);
-  border-radius: 20px;
-} */
-
 
 .product {
   border-radius: 20px;
@@ -131,11 +161,13 @@ updatePayment()
   border: none;
   cursor: pointer;
 }
+
 .arrow {
   width: 35px;
   margin-right: 10px;
   cursor: pointer;
 }
+
 .cart-text {
   font-size: 33px;
   margin-left: 15px;

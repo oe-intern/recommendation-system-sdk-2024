@@ -51,25 +51,21 @@ const shipping = inject<number>('shipping') ?? 0
   gap: 20px;
   font-size: 17px;
   font-weight: 600;
-  /* color: black; */
 }
 .summary-details {
   align-content: center;
   align-items: center;
-  /* margin-left: 20%; */
   display: flex;
   gap: 30%;
 }
 
 .total-value {
-  /* color: black; */
   font-weight: 800;
   font-size: 23px;
   margin-top: 13px;
 }
 .summary-title {
   font-size: 30px;
-  /* color: black; */
   font-weight: 600;
   align-self: stretch;
   margin: 0 0 32px;
@@ -85,7 +81,6 @@ const shipping = inject<number>('shipping') ?? 0
 .price-item {
   font: 20px/1.2 Newsreader, sans-serif;
   margin-left: 20%;
-  /* margin: 20px 0 0; */
   color: black;
   margin-top: 0;
 }
@@ -94,9 +89,7 @@ const shipping = inject<number>('shipping') ?? 0
   margin: 20px 20px 20px 20px;
   align-self: center;
   width: 80%;
-  /* height: 40px; */
   border-radius: 13px;
-  /* background-color: #426b1f; */
   display: flex;
   margin-top: 32px;
   gap: 20px;
