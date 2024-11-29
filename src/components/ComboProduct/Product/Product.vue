@@ -1,14 +1,15 @@
 <template lang="pug">
   li.product
-    img.product__image(:src="product.featuredMedia.preview.image.url" alt="product image")
+    img.product__image(:src="product.featuredMedia.preview.image.url" alt="product image" @click="productClick")
     .information
       Text.title(as="h2", variant="headingMd", :style="{ color: color }") {{ product.title }}
       Text.price(as="p", variant="body",) {{ product.priceRangeV2.maxVariantPrice.amount }} {{ product.priceRangeV2.maxVariantPrice.currencyCode }}
-      input.text(v-model="numBuy", @input="updatePayment", :style="{ width: '125px', fontSize: '25px', border: '1px solid #ccc', borderRadius: '20px', textAlign: 'center' }")
+      input(v-model="numBuy", type=number, @input="updatePayment", :style="{ width: '125px', fontSize: '25px', border: '1px solid #ccc', borderRadius: '20px', textAlign: 'center' }")
 
     #cart
-      Text.payment(as="product-payment", variant="headingMd") {{ isNaN(productPayment) ? 'invalid quantity' : '$' + productPayment.toFixed(2) }}
-      button.add-to-cart-button
+      //- Text.payment(as="product-payment", variant="headingMd") {{ isNaN(productPayment) ? 'invalid quantity' : '$' + productPayment.toFixed(2) }}
+      Text.payment(as="product-payment", variant="headingMd") {{ productPayment }}
+      button.add-to-cart-button(@click="clickAddToCart")
         span.cart-text() Add to cart
         img.arrow(src="./icon/arrow.svg" alt="Description of SVG",)
 </template>
@@ -18,6 +19,7 @@ import { defineProps, inject, ref } from 'vue'
 let productPayment = ref(0)
 
 interface Product {
+  id: string
   title: string
   featuredMedia: object
   priceRangeV2: {
@@ -26,17 +28,9 @@ interface Product {
       currencyCode: string
     }
   }
-  //- div.order
-  //- .order
-  //-   Order
-  //- <p>hello {{ productId }}</p>ject
-  // name: string
-  // price: number
-  // image: string
-  // numBuy: number
 }
 
-const numBuy = ref(1)
+const numBuy = ref<number>(1)
 const subtotal = inject('subtotal', ref(0))
 const tax = inject('tax', ref(0))
 const total = inject('total', ref(0))
@@ -59,7 +53,9 @@ console.log('props', props.product)
 // textElement.style.color = color;
 function updatePayment() {
   const TEMP = productPayment.value
-  productPayment.value = parseFloat(props.product.priceRangeV2.maxVariantPrice.amount) * numBuy
+  productPayment.value = parseFloat(props.product.priceRangeV2.maxVariantPrice.amount) * numBuy.value
+  console.log('productPayment', parseFloat(props.product.priceRangeV2.maxVariantPrice.amount))
+  console.log('productPayment', parseFloat(numBuy.value))
   if (!isNaN(TEMP)) {
     subtotal.value -= TEMP
   }
@@ -71,32 +67,25 @@ function updatePayment() {
 }
 
 updatePayment()
-// const pid = inject('pid');
-// const endpoint = 'https://8d65-58-187-163-127.ngrok-free.app/api/sdk/recommendation?product_id=123';
-const endpointPost = `https://localhost:443/api/sdk/interaction?product_id=${props.id}`;
-const options = {
-  method: 'POST',
-  headers: {
-    // 'Authorization': 'secret',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    product_id: props.id,
-    interaction_type: 'view'
-  })
-};
+const pid = props.product.id.split("/").pop();
 
-function clickAddToCart() {
-  console.log('color: ');
-  request(endpoint, options)
-    .then(response => {
-      console.log('Success:', response);
-      products.push(...response.products);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
+import axios from 'axios';
+async function clickAddToCart() {
+  const body = {
+    product_id: pid,
+    interaction_type: 'add_to_cart'
+  }
+  const response = await axios.post('https://localhost:443/api/sdk/interaction', body)
+  console.log('Success cart:', response);
+  }
+async function productClick() {
+  const body = {
+    product_id: pid,
+    interaction_type: 'click'
+  }
+  const response = await axios.post('https://localhost:443/api/sdk/interaction', body)
+  console.log('Success click:', response);
+  }
 </script>
 
 <style scoped>
