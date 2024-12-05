@@ -14,15 +14,18 @@
 import { defineProps } from 'vue'
 import axios from 'axios'
 import type { IProduct } from '@/types';
+import { addToCart } from '@/services';
 const props = defineProps<{ product: IProduct; }>();
 const pid = props.product.id.split('/').pop();
 // const prod = props.product.variants[0].id.split('/').pop();
+const ngrok = 'https://9d28-183-80-115-217.ngrok-free.app'
 async function clickAddToCart() {
+  addToCart(Number(props.product.variants[0].id));
   const body = {
     product_id: pid,
     interaction_type: 'add_to_cart',
   }
-  const response = await axios.post('https://localhost:443/api/sdk/interaction', body)
+  const response = await axios.post(`${ngrok}/api/sdk/interaction`, body)
   console.log('Success cart:', response)
 }
 
@@ -31,7 +34,7 @@ async function productClick() {
     product_id: pid,
     interaction_type: 'click',
   }
-  const response = await axios.post('https://localhost:443/api/sdk/interaction', body)
+  const response = await axios.post(`${ngrok}/api/sdk/interaction`, body)
   console.log('Success click:', response)
 }
 </script>
