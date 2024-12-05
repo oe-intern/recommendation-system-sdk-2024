@@ -43,3 +43,45 @@ export function request(endpoint: string, options?: Record<string, any>, isIgnor
       });
   });
 }
+
+export function addToCart(pid: number) {
+    console.log('Adding item to cart...');
+    // Example form data
+    const formData = {
+      items: [
+        {
+          id: pid, 
+          quantity: 2, 
+        },
+      ],
+    };
+
+    // Send a POST request to Shopify's cart/add.js endpoint
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to add item to cart');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Item added to cart:', data);
+        // alert('Product added to cart!');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // alert('Failed to add product to cart.');
+      });
+}
+export function getCart() {
+  console.log('Fetching cart...');
+  fetch(window.Shopify.routes.root + 'products/red-rain-coat.js')
+    .then(response => response.json())
+    .then(product => { console.log(product); return product; });
+}
