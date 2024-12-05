@@ -1,0 +1,34 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 10px;
+  gap: 2px;
+  .image {
+    align-items: center;
+    height: 100px;
+    width: 100px;
+  }
+
+  .information {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1vh;
+    width: 100px;
+
+    .name {
+      text-align: center;
+    }
+
+    .price {
+      text-align: center;
+      font-size: large;
+    }
+  }
+  .add-to-cart {
+    border: 0;
+    background-color: black;
+    color: white;
+  }
+}

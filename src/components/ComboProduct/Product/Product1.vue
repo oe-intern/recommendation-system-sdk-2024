@@ -4,25 +4,19 @@
     img.image(:src="product.featuredMedia.preview.image.url",alt="Description of SVG",@click="productClick")
     .information
       .name {{ product.title }}
-      select(v-if="product.typeprod")
-        option(v-for="variant in product.typeprod", :key="variant.name") {{ variant.name }}
+      select.variant(v-if="product.variants")
+        option.choose(v-for="variant in product.variants", :key="variant.id") {{ variant.title }}
       .price {{ product.priceRangeV2.maxVariantPrice.amount }}{{ product.priceRangeV2.maxVariantPrice.currencyCode }}
   button.add-to-cart(@click="clickAddToCart") Add
 </template>
 
 <script setup lang="ts">
-import { defineProps, inject, onMounted } from 'vue'
+import { defineProps } from 'vue'
 import axios from 'axios'
-const props = defineProps<{ product: Object; }>();
+import type { IProduct } from '@/types';
+const props = defineProps<{ product: IProduct; }>();
 const pid = props.product.id.split('/').pop();
-const configs = inject<object>("configs");
-onMounted(() => {
-  const productClass = document.getElementsByClassName('product');
-  console.log(productClass[0]);
-  Array.from(productClass).forEach(element => {
-    // element.style.font-size = '1px';
-  });
-});
+// const prod = props.product.variants[0].id.split('/').pop();
 async function clickAddToCart() {
   const body = {
     product_id: pid,
@@ -43,53 +37,5 @@ async function productClick() {
 </script>
 
 <style lang="scss" scoped>
-.product {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  // font: 100 1.6vh 'Arial';
-  font-size: 9px;
-
-  .attribute {
-    width: 80%;
-    display: flex;
-    gap: 8%;
-    
-    .image {
-      height: 100px;
-      min-width: 100px;
-      align-items: center;
-      object-fit: fill;
-      width: 100px;
-    }
-
-    .information {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      font-size: 1.8vh;
-
-      .name {
-        width: 15em;
-        font-size: 1em;
-        white-space: nowrap;       /* Prevent text from wrapping to the next line */
-        overflow: hidden;          /* Hide overflowing text */
-        text-overflow: ellipsis;   /* Add ellipsis (...) for overflowing text */
-      }
-
-      .price {
-        font-size: 1em;
-      }
-    }
-  }
-
-  .add-to-cart {
-    background-color: black;
-    color: white;
-    border: 0;
-    font-size: 2.3em;
-    width: 3em;
-    height: 2em;
-  }
-}
+@use '../../../scss/components/product-layout1';
 </style>

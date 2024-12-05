@@ -1,0 +1,56 @@
+.product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // font: 100 1.6vh 'Arial';
+  font-size: 9px;
+  color: black;
+
+  .attribute {
+    width: 80%;
+    display: flex;
+    gap: 8%;
+    
+    .image {
+      width: 100px;
+      align-items: center;
+      object-fit: fill;
+    }
+
+    .information {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 1.8vh;
+
+      .name {
+        width: 15em;
+        font-size: 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .variant {
+        width: 50%;
+        .choose {
+          color: black;
+        }
+
+      }
+
+      .price {
+        font-size: 1em;
+      }
+    }
+  }
+
+  .add-to-cart {
+    background-color: black;
+    color: white;
+    border: 0;
+    font-size: 2.3em;
+    width: 3em;
+    height: 2em;
+  }
+}
