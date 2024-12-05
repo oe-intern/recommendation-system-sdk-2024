@@ -20,7 +20,7 @@ import { onMounted } from 'vue';
 import { request } from '@/services';
 import type { IProduct, IConfig } from '@/types';
 import ProductItem from './Item/ProductItem.vue';
-
+console.log('RelatedItems.vue');
 
 
 const props = defineProps({
@@ -39,6 +39,7 @@ const configs = reactive<IConfig>({} as IConfig);
 
 provide("configs", configs);
 
+// const endpointRecommend = `https://localhost/api/sdk/products/${props.id}/recommendations`;
 const endpointRecommend = `https://localhost/api/sdk/products/${props.id}/recommendations`;
 const endpointSettings = `https://localhost/api/sdk/shop/settings`;
 
