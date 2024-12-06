@@ -1,21 +1,20 @@
-
 .combo-product {
   font-family: Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
 
   .title {
     color: black;
-    margin-bottom: 55px;
-    font: 500 2em Arial, sans-serif;
+    font-size: 1.5em;
+    // font: 500 2em Arial, sans-serif;
   }
   
   .list-products {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.7em;
   }
  
   .list-products2 {
     display: flex;
-    gap: 10px;
+    gap: 0.7em;
   }
 }
