@@ -26,252 +26,235 @@ console.log('ComboProduct.vue');
 console.log('version4');
 const products = reactive<IProduct[]>([]);
 const configs = reactive<IConfig>({} as IConfig);
-const example = [
-  {
-      "id": "gid:\/\/shopify\/Product\/8909707706614",
-      "title": "Milano Shirt",
-      "handle": "milano-shirt",
-      "category": null,
-      "vendor": "Giorgio Armani",
-      "variants": [
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508129284342"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508129317110"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508129349878"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508129382646"
-          }
-      ],
-      "tags": [
-          "03\/20",
-          "AW15",
-          "button-ups",
-          "full moon",
-          "homecore",
-          "man",
-          "newman",
-          "signature",
-          "stripesmen",
-          "tops",
-          "white"
-      ],
-      "status": "ACTIVE",
-      "productType": "men's button-ups",
-      "totalInventory": 1,
-      "description": "This is a demonstration store. You can purchase products like this from Baby & CompanyThe Milano Shirt is classically tailored as the everyday button up shirt for both casual and more formal wear. Red embroidery cascades the center back seam as a nicely added detail. Covered button placket closure at front. Homecore. Color White. 100% Cotton. Made in Portugal. Jacob is wearing a Medium. Also available in Navy. Shop our collection of Homecore.",
-      "featuredMedia": {
-          "id": "gid:\/\/shopify\/MediaImage\/34574809628918",
-          "alt": "",
-          "mediaContentType": "IMAGE",
-          "preview": {
-              "image": {
-                  "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0731\/4558\/1814\/files\/5592345600_2_1_2.jpg?v=1732588532"
-              }
-          }
-      },
-      "priceRangeV2": {
-          "maxVariantPrice": {
-              "amount": "178.0",
-              "currencyCode": "VND"
-          },
-          "minVariantPrice": {
-              "amount": "178.0",
-              "currencyCode": "VND"
-          }
-      }
-  },
-  {
-      "id": "gid:\/\/shopify\/Product\/8909708558582",
-      "title": "Sweatshirt with slogan on back",
-      "handle": "sweatshirt-with-slogan-on-back",
-      "category": {
-          "id": "gid:\/\/shopify\/TaxonomyCategory\/aa-1-4"
-      },
-      "vendor": "Mango",
-      "variants": [
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508131807478"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508131840246"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508131873014"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508131905782"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508131938550"
-          }
-      ],
-      "tags": [
-          "2\/16",
-          "blue",
-          "cooloff",
-          "dresses",
-          "lilith",
-          "ondee",
-          "SALE",
-          "ss15",
-          "visible",
-          "WEEK08",
-          "woman"
-      ],
-      "status": "ACTIVE",
-      "productType": "women's dresses",
-      "totalInventory": 3,
-      "description": "The Relax Dress tea-length with a full skirt. Reinvented v-neckline. Capped mesh sleeves. Lilith. Color Ondee. 100% Cotton, Mesh Overlay 100% Polyester. Ashley is wearing an X-Small. Shop our collection of Lilith.",
-      "featuredMedia": {
-          "id": "gid:\/\/shopify\/MediaImage\/34574818279670",
-          "alt": "",
-          "mediaContentType": "IMAGE",
-          "preview": {
-              "image": {
-                  "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0731\/4558\/1814\/files\/9593303306_2_1_2.jpg?v=1732588595"
-              }
-          }
-      },
-      "priceRangeV2": {
-          "maxVariantPrice": {
-              "amount": "335.0",
-              "currencyCode": "VND"
-          },
-          "minVariantPrice": {
-              "amount": "335.0",
-              "currencyCode": "VND"
-          }
-      }
-  },
-  {
-      "id": "gid:\/\/shopify\/Product\/8909708689654",
-      "title": "No Sleeve Night Top",
-      "handle": "no-sleeve-night-top",
-      "category": {
-          "id": "gid:\/\/shopify\/TaxonomyCategory\/aa-1-4"
-      },
-      "vendor": "ASOS",
-      "variants": [
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508132233462"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508132266230"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508132298998"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508132331766"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508132364534"
-          }
-      ],
-      "tags": [
-          "dress",
-          "dresses",
-          "gold",
-          "just in case",
-          "SALE",
-          "Shot 4\/19",
-          "silver",
-          "SS15",
-          "white",
-          "woman",
-          "womens"
-      ],
-      "status": "ACTIVE",
-      "productType": "women's dresses",
-      "totalInventory": 5,
-      "description": "This is a demonstration store. You can purchase products like this from Baby & CompanyThe softened color palette invokes feelings of a childhood summer, now long lost, but the memories remain. Get your groove on with this beauty from Just in Case. Invisible zip closure at center back. Fully lined. Color Silver. Body 57% Polyester, 29% Acetate, 14% Polyester Metal, Skirt 50% Cotton, 42% Polyester, 8% Polyester Metal, Waist band 100% Polyester, Lining 100% Cotton. Lana is wearing a French 36. Shop our collection of Just in Case",
-      "featuredMedia": {
-          "id": "gid:\/\/shopify\/MediaImage\/34574819164406",
-          "alt": "",
-          "mediaContentType": "IMAGE",
-          "preview": {
-              "image": {
-                  "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0731\/4558\/1814\/files\/9472319800_2_1_2.jpg?v=1732588600"
-              }
-          }
-      },
-      "priceRangeV2": {
-          "maxVariantPrice": {
-              "amount": "272.0",
-              "currencyCode": "VND"
-          },
-          "minVariantPrice": {
-              "amount": "272.0",
-              "currencyCode": "VND"
-          }
-      }
-  },
-  {
-      "id": "gid:\/\/shopify\/Product\/8909707837686",
-      "title": "Mashmallow Top",
-      "handle": "mashmallow-top-in-red",
-      "category": null,
-      "vendor": "Giorgio Armani",
-      "variants": [
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508129612022"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508129644790"
-          },
-          {
-              "id": "gid:\/\/shopify\/ProductVariant\/47508129677558"
-          }
-      ],
-      "tags": [
-          "02\/12",
-          "beige",
-          "blouses",
-          "cooloff",
-          "nautical",
-          "NICO",
-          "putty",
-          "SALE",
-          "ss15",
-          "tan",
-          "tops",
-          "visible",
-          "woman"
-      ],
-      "status": "ACTIVE",
-      "productType": "women's tops",
-      "totalInventory": 2,
-      "description": "This is a demonstration store. You can purchase products like this from Baby & CompanyThe Marshmallow is a sweet piece for 2015. Wide scoop neckline. Elastic band at waist. Single button closure at center back neck. Lined. Nicholson & Nicholson. Color Beige. 100% Cotton. Made in Japan. Lana is wearing a French 38. Also available in Blue. Shop our collection of NICO, Nicholson & Nicholson.",
-      "featuredMedia": {
-          "id": "gid:\/\/shopify\/MediaImage\/34574810677494",
-          "alt": "",
-          "mediaContentType": "IMAGE",
-          "preview": {
-              "image": {
-                  "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0731\/4558\/1814\/files\/5471372600_2_3_2.jpg?v=1732588540"
-              }
-          }
-      },
-      "priceRangeV2": {
-          "maxVariantPrice": {
-              "amount": "209.0",
-              "currencyCode": "VND"
-          },
-          "minVariantPrice": {
-              "amount": "209.0",
-              "currencyCode": "VND"
-          }
-      }
-  }
-];
-example.forEach(element => {
-  products.push(element)
-});
+// const example = [
+//     {
+//       "id": "gid://shopify/Product/8909706887414",
+//       "title": "Nuit Trousers in Black",
+//       "handle": "nuit-trousers-black",
+//       "category": {
+//         "id": "gid://shopify/TaxonomyCategory/aa-1-14"
+//       },
+//       "vendor": "Zara",
+//       "variants": [
+//         {
+//           "id": "gid://shopify/ProductVariant/47508126761206",
+//           "title": "Black / X-Small",
+//           "taxCode": "",
+//           "price": "228",
+//           "image": null
+//         },
+//         {
+//           "id": "gid://shopify/ProductVariant/47508126793974",
+//           "title": "Black / Small",
+//           "taxCode": "",
+//           "price": "228",
+//           "image": null
+//         },
+//         {
+//           "id": "gid://shopify/ProductVariant/47508126826742",
+//           "title": "Black / Medium",
+//           "taxCode": "",
+//           "price": "228",
+//           "image": null
+//         }
+//       ],
+//       "tags": [
+//         "Black",
+//         "bottoms",
+//         "drawstring",
+//         "S14",
+//         "Shorts",
+//         "visible",
+//         "Woman"
+//       ],
+//       "status": "ACTIVE",
+//       "productType": "women's shorts",
+//       "totalInventory": 3,
+//       "description": "A mid length silk short from a company that understands a woman's right to basics. A nylon grosgrain drawstring at waist with on-seam pockets. Drifter. Color Black. 100% Silk. Made in U.S.A. Lana is wearing a size Small.",
+//       "featuredMedia": {
+//         "id": "gid://shopify/MediaImage/34574798815478",
+//         "alt": "",
+//         "mediaContentType": "IMAGE",
+//         "preview": {
+//           "image": {
+//             "url": "https://cdn.shopify.com/s/files/1/0731/4558/1814/files/5681379800_2_1_2.jpg?v=1732588467"
+//           }
+//         }
+//       },
+//       "priceRangeV2": {
+//         "maxVariantPrice": {
+//           "amount": "228.0",
+//           "currencyCode": "VND"
+//         },
+//         "minVariantPrice": {
+//           "amount": "228.0",
+//           "currencyCode": "VND"
+//         }
+//       }
+//     },
+//     {
+//       "id": "gid://shopify/Product/8909707280630",
+//       "title": "Kasuri Jersey Button-Up",
+//       "handle": "kasuri-jersey-button-up",
+//       "category": {
+//         "id": "gid://shopify/TaxonomyCategory/aa-1-13"
+//       },
+//       "vendor": "Pull and Bear",
+//       "variants": [
+//         {
+//           "id": "gid://shopify/ProductVariant/47508128039158",
+//           "title": "Blue / Medium",
+//           "taxCode": "",
+//           "price": "88",
+//           "image": null
+//         },
+//         {
+//           "id": "gid://shopify/ProductVariant/47508128071926",
+//           "title": "Blue / Large",
+//           "taxCode": "",
+//           "price": "88",
+//           "image": null
+//         },
+//         {
+//           "id": "gid://shopify/ProductVariant/47508128104694",
+//           "title": "Blue / X-Large",
+//           "taxCode": "",
+//           "price": "88",
+//           "image": null
+//         }
+//       ],
+//       "tags": [
+//         "Black",
+//         "Button Up",
+//         "button ups",
+//         "Cotton",
+//         "F14",
+//         "Ivory",
+//         "Jersey",
+//         "Man",
+//         "Men's",
+//         "SALE",
+//         "SALE30",
+//         "top",
+//         "tops",
+//         "V:Room",
+//         "visible"
+//       ],
+//       "status": "ACTIVE",
+//       "productType": "men's button-ups",
+//       "totalInventory": 6,
+//       "description": "V:Room takes the classic button up and plays it casual by giving it a contrasting fabric inside. Curved hem with side splits. Color Ivory/Black. 100% Cotton. Matt is wearing a size Large. Matt is 6’2â€_x009d_, Chest 38â€_x009d_, Waist 31â€_x009d_, Inseam 34.5â€_x009d_. Also available in Blue/Grey.",
+//       "featuredMedia": {
+//         "id": "gid://shopify/MediaImage/34574803599606",
+//         "alt": "",
+//         "mediaContentType": "IMAGE",
+//         "preview": {
+//           "image": {
+//             "url": "https://cdn.shopify.com/s/files/1/0731/4558/1814/files/5714333400_2_1_2.jpg?v=1732588498"
+//           }
+//         }
+//       },
+//       "priceRangeV2": {
+//         "maxVariantPrice": {
+//           "amount": "88.0",
+//           "currencyCode": "VND"
+//         },
+//         "minVariantPrice": {
+//           "amount": "88.0",
+//           "currencyCode": "VND"
+//         }
+//       }
+//     },
+//     {
+//       "id": "gid://shopify/Product/8909707378934",
+//       "title": "Hubbard Jacket in Navy",
+//       "handle": "hubbard-jacket-navy",
+//       "category": {
+//         "id": "gid://shopify/TaxonomyCategory/aa-1-10-2"
+//       },
+//       "vendor": "Mango",
+//     //   "variants": [
+//     //     {
+//     //       "id": "gid://shopify/ProductVariant/47508128334070",
+//     //       "title": "Navy / Small",
+//     //       "taxCode": "",
+//     //       "price": "248",
+//     //       "image": null
+//     //     },
+//     //     {
+//     //       "id": "gid://shopify/ProductVariant/47508128366838",
+//     //       "title": "Navy / Medium",
+//     //       "taxCode": "",
+//     //       "price": "248",
+//     //       "image": null
+//     //     },
+//     //     {
+//     //       "id": "gid://shopify/ProductVariant/47508128399606",
+//     //       "title": "Navy / Large",
+//     //       "taxCode": "",
+//     //       "price": "248",
+//     //       "image": null
+//     //     },
+//     //     {
+//     //       "id": "gid://shopify/ProductVariant/47508128432374",
+//     //       "title": "Navy / X-Large",
+//     //       "taxCode": "",
+//     //       "price": "248",
+//     //       "image": null
+//     //     },
+//     //     {
+//     //       "id": "gid://shopify/ProductVariant/47508128465142",
+//     //       "title": "Navy / XX-Large",
+//     //       "taxCode": "",
+//     //       "price": "248",
+//     //       "image": null
+//     //     }
+//     //   ],
+//       "tags": [
+//         "Esemplare",
+//         "F14",
+//         "hood",
+//         "jacket",
+//         "knit",
+//         "Man",
+//         "navy",
+//         "Outerwear",
+//         "SALE",
+//         "SALE30_4",
+//         "sweater",
+//         "visible",
+//         "zip"
+//       ],
+//       "status": "ACTIVE",
+//       "productType": "men's coats & jackets",
+//       "totalInventory": 3,
+//       "description": "A warm hooded sweater jacket with zip and button closure. A front breast pocket and side angled pockets for your hands. Esemplare. Color Navy. 100% Wool. Spencer is wearing a size Large. Also available in Dark Green.",
+//       "featuredMedia": {
+//         "id": "gid://shopify/MediaImage/34574805565686",
+//         "alt": "",
+//         "mediaContentType": "IMAGE",
+//         "preview": {
+//           "image": {
+//             "url": "https://cdn.shopify.com/s/files/1/0731/4558/1814/files/5714343400_2_2_2.jpg?v=1732588507"
+//           }
+//         }
+//       },
+//       "priceRangeV2": {
+//         "maxVariantPrice": {
+//           "amount": "248.0",
+//           "currencyCode": "VND"
+//         },
+//         "minVariantPrice": {
+//           "amount": "248.0",
+//           "currencyCode": "VND"
+//         }
+//       }
+//     }
+// ];
+
+// example.forEach(element => {
+//   products.push(element)
+// });
 console.log('ComboProduct.vue');
 import { request } from '@/services';
 // addToCart();
@@ -283,11 +266,11 @@ const props = defineProps({
     required: true,
   },
 });
-const ngrok = 'https://9d28-183-80-115-217.ngrok-free.app'
-// const endpointRecommend = `https://localhost/api/sdk/products/${props.id}/recommendations`;
-const endpointRecommend = `${ngrok}/api/sdk/products/8909706821878/recommendations`;
-// const endpointSettings = `https://localhost/api/sdk/shop/settings`;
-const endpointSettings = `${ngrok}/api/sdk/shop/settings`;
+// const ngrok = 'https://9d28-183-80-115-217.ngrok-free.app'
+const endpointRecommend = `https://localhost/api/sdk/products/${props.id}/recommendations`;
+// const endpointRecommend = `${ngrok}/api/sdk/products/8909706821878/recommendations`;
+const endpointSettings = `https://localhost/api/sdk/shop/settings`;
+// const endpointSettings = `${ngrok}/api/sdk/shop/settings`;
 
 const options = {
   method: 'GET',
@@ -318,5 +301,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@use '../../scss/components/_combo.scss';
+@use '../../scss/components/comboProduct/combo';
 </style>
