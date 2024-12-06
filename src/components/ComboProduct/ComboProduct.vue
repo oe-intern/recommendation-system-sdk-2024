@@ -1,4 +1,5 @@
 <template lang="pug">
+//- button.redir(@click="redirect") Redirect
 .combo-product
   .title Frequent bought together
   .list-products(v-if="configs.layout !== 'layout2'")
@@ -255,8 +256,10 @@ const configs = reactive<IConfig>({} as IConfig);
 // example.forEach(element => {
 //   products.push(element)
 // });
+
 console.log('ComboProduct.vue');
 import { request } from '@/services';
+// import { redirect } from '@/services';
 // addToCart();
 // products.push(getCart());
 

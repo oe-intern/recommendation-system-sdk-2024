@@ -45,13 +45,13 @@ export function request(endpoint: string, options?: Record<string, any>, isIgnor
 }
 
 export function addToCart(pid: number) {
-    console.log('Adding item to cart...');
+    console.log(pid);
     // Example form data
     const formData = {
       items: [
         {
           id: pid, 
-          quantity: 2, 
+          quantity: 1, 
         },
       ],
     };
@@ -78,10 +78,43 @@ export function addToCart(pid: number) {
         console.error('Error:', error);
         // alert('Failed to add product to cart.');
       });
+    getCart();
 }
 export function getCart() {
-  console.log('Fetching cart...');
-  fetch(window.Shopify.routes.root + 'products/red-rain-coat.js')
-    .then(response => response.json())
-    .then(product => { console.log(product); return product; });
+  console.log('getCart');
+  fetch(window.Shopify.routes.root + 'cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed cart');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log('Item cart:', data);
+      // alert('Product added to cart!');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+function transformToHandle(input: string) {
+    return input
+        .toLowerCase() // Convert to lowercase
+        .replace(/[^a-z0-9\s-]/g, "") // Remove special characters except spaces and hyphens
+        .replace(/\s+/g, "-") // Replace spaces with hyphens
+        .trim(); // Remove leading/trailing spaces
+}
+export function redirect (productName : string){
+    const currentUrl = window.location.href;
+    console.log(currentUrl);
+    const productPath = currentUrl.split("?")[0].split("/products")[0] + "/products";
+    const clickProductUrl = productPath+'/'+transformToHandle(productName);
+    console.log(clickProductUrl);
+    window.location.href = clickProductUrl;
 }
