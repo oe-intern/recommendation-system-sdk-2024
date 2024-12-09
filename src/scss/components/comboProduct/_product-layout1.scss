@@ -33,6 +33,10 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        cursor:pointer;
+        :hover {
+          text-decoration: underline;
+        }
       }
 
       .price {
