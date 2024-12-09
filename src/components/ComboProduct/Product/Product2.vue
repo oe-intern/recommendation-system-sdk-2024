@@ -1,26 +1,30 @@
 <template lang="pug">
 .product
-  img.image(:src="product.featuredMedia.preview.image.url",alt="Description of SVG",@click="productClick")
+  img.image(:src="product.images[selectedVariant-1].src",:alt="product.image.alt",@click="productClick")
   .information
-    .name {{ product.title }}
-    .price {{ product.priceRangeV2.maxVariantPrice.amount }}{{ product.priceRangeV2.maxVariantPrice.currencyCode }}
-    select.variant(v-if="product.variants")
-      option.choose(v-for="variant in product.variants", :key="variant.id") {{ variant.title }}
+    .name(:style="colorConfig", @click="productClick") {{ product.variants[selectedVariant-1].title }}
+    .price {{ product.variants[selectedVariant-1].price }}{{ product.variants[selectedVariant-1].price_currency }}
+    select.variant(v-if="product.variants" v-model="selectedVariant")
+      option.choose(v-for="variant in product.variants", :key="variant.id", :value="variant.position") {{ variant.title }}
   button.add-to-cart(@click="clickAddToCart") Add
 .connect(style="align-content: center;") +
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, ref, computed } from 'vue'
 import axios from 'axios'
-import type { IProduct } from '@/types';
+import type { IConfig, IProduct } from '@/types';
 import { addToCart } from '@/services';
 console.log('jiefjls')
+const selectedVariant = ref(1);
 // const ngrok = 'https://9d28-183-80-115-217.ngrok-free.app'
 const ngrok = 'https://localhost:443';
-const props = defineProps<{ product: IProduct }>()
-const pid = props.product.id.split('/').pop()
+const props = defineProps<{ product: IProduct, configs: IConfig }>()
+const pid = props.product.id
 
+const colorConfig = computed(() => ({
+  color: props.configs?.text_color || '#000',
+}));
 async function clickAddToCart() {
   addToCart(Number(props.product.variants[0].id));
   const body = {
