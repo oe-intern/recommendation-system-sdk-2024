@@ -4,47 +4,29 @@ export type ICustomer = {
 }
 
 export interface IVariant {
-  id: string;
+  id: number;
   title: string;
-  taxCode: string;
   price: string;
-  image: string | null;
+  position: number;
+  price_currency: string;
 }
 
-export interface IFeaturedMedia {
-  id: string;
+export interface IImage {
+  id: number;
   alt: string;
-  mediaContentType: string;
-  preview: {
-    image: {
-      url: string;
-    };
-  };
-}
-
-export interface IPriceRange {
-  maxVariantPrice: {
-    amount: string;
-    currencyCode: string;
-  };
-  minVariantPrice: {
-    amount: string;
-    currencyCode: string;
-  };
+  src: string;
 }
 
 export interface IProduct {
-  id: string;
+  id: number;
   title: string;
-  handle: string;
   vendor: string;
+  product_type: string;
+  handle: string;
+  tags: string;
   variants: IVariant[];
-  tags: string[];
-  productType: string;
-  totalInventory: number | null | undefined;
-  description: string;
-  featuredMedia: IFeaturedMedia;
-  priceRangeV2: IPriceRange;
+  images: IImage[];
+  image: IImage;
 }
 
 export interface IConfig {
