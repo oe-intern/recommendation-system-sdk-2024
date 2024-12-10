@@ -17,7 +17,6 @@ import type { IConfig, IProduct } from '@/types';
 import { addToCart } from '@/services';
 console.log('jiefjls')
 const selectedVariant = ref(1);
-// const ngrok = 'https://9d28-183-80-115-217.ngrok-free.app'
 const ngrok = 'https://localhost:443';
 const props = defineProps<{ id: number, configs: IConfig }>()
 const product = reactive<IProduct>({} as IProduct);
