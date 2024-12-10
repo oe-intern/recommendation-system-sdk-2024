@@ -50,6 +50,9 @@ const options = {
     'Content-Type': 'application/json',
   },
 }
+
+
+
 onMounted(() => {
   request(endpointRecommend, options)
     .then((response: { data: string[] }) => {
