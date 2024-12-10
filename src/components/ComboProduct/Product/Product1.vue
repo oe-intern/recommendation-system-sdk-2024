@@ -11,40 +11,41 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps } from 'vue'
+import { computed, reactive, defineProps, ref } from 'vue'
 import axios from 'axios'
 import type { IProduct, IConfig } from '@/types';
 import { addToCart, redirect } from '@/services';
-import { ref } from 'vue';
 
 
-const props = defineProps<{ product: IProduct; configs: IConfig }>();
-console.log("product:", props.product);
+const product = reactive<IProduct>({} as IProduct);
+const props = defineProps<{ id: number, configs: IConfig }>();
+const url = `https://vtzy11.myshopify.com/products/${props.id}`;
+console.log("product:", product);
 const selectedVariant = ref(1);
-const pid = props.product.id
-// const ngrok = 'https://9d28-183-80-115-217.ngrok-free.app'
+const pid = product.id
 const ngrok = 'https://localhost:443'
 const colorConfig = computed(() => ({
   color: props.configs?.text_color || '#000',
 }));
 
 console.log(props.configs?.text_color);
-console.log("variant", props.product.variants[0].id)
+console.log("variant", product.variants[0].id)
 
 async function clickAddToCart() {
-  const prod = props.product.variants[selectedVariant.value-1].id
+  const prod = product.variants[selectedVariant.value-1].id
   console.log('Add to cart:', prod);
   addToCart(Number(prod));
   const body = {
     number_of_items: 1,
   }
   const response = await axios.post(`${ngrok}/api/sdk/products/${pid}/add-to-cart`, body)
-  console.log('Success cart:', response)
+    console.log('Success cart:', response)
+    window.location.href = window.location.href;
 }
 
 async function productClick() {
-  console.log('Product clicked:', props.product.title);
-  redirect(props.product.title);
+  console.log('Product clicked:', product.title);
+  redirect(product.title);
   const response = await axios.post(`${ngrok}/api/sdk/products/${pid}/click`)
   console.log('Success click:', response)
 }
