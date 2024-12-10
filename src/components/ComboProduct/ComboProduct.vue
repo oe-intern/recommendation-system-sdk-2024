@@ -44,13 +44,17 @@ handles.value.push("pendant-earrings");
 handles.value.push("18k-bloom-earrings");
 handles.value.push("no=problem");
 
+
+
+
+
+
 const options = {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
   },
 }
-
 
 
 onMounted(() => {
