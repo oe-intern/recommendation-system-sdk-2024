@@ -4,13 +4,15 @@
   .title(v-else) Frequent bought together
   .list-products(v-if="configs.layout !== 'layout2'")
     product1(
-      v-for="handle in handles" :key="`view1-${handle}`"
+      v-for="handle in handles.slice(0, configs.number_of_items)" 
+      :key="`view1-${handle}`"
       :handle="handle",
       :configs="configs",
     )
   .list-products2(v-else)
     product2(
-      v-for="handle in handles" :key="`view2-${handle}`"
+      v-for="handle in handles" 
+      :key="`view2-${handle}`"
       :handle="handle"
       :configs="configs",
     )
@@ -18,18 +20,14 @@
 
 <script setup lang="ts">
 
-import type { IConfig } from '@/types'
+import type { IConfig, IEntry } from '@/types'
 import { reactive, onMounted, ref, computed, provide } from 'vue'
-import { request } from '@/services'
+import { cutProduct, request } from '@/services'
 import Product1 from './Product/Product1.vue'
 import Product2 from './Product/Product2.vue'
-
 console.log('ComboProduct.vue')
 const configs = reactive<IConfig>({} as IConfig)
 const props = defineProps({id: String});
-
-const endpointRecommend = `https://localhost/api/sdk/products/${props.id}/recommendations`
-const endpointSettings = `https://localhost/api/sdk/shop/settings`
 
 const rendered = ref(0);
 const haveData = computed(() => {
@@ -39,11 +37,9 @@ const haveData = computed(() => {
 provide('rendered', rendered);
 
 const handles = ref<string[]>([])
-handles.value.push("selling-plans-ski-wax");
-handles.value.push("pendant-earrings");
-handles.value.push("18k-bloom-earrings");
-handles.value.push("no=problem");
-
+// handles.value.push("pendant-earrings");
+// handles.value.push("18k-bloom-earrings");
+// handles.value.push("no=problem");
 
 const options = {
   method: 'GET',
@@ -51,13 +47,18 @@ const options = {
     'Content-Type': 'application/json',
   },
 }
+console.log('v9');
 
-
+const endpointRecommend = `https://localhost/api/sdk/products/${props.id}/recommendations`
+const endpointSettings = `https://localhost/api/sdk/shop/settings`
 onMounted(() => {
   request(endpointRecommend, options)
-    .then((response: { data: string[] }) => {
+    .then((response: { data: IEntry[] }) => {
       console.log('Products fetched:', response.data)
-      handles.value.push(...response.data)
+      response.data.forEach(element => {
+        handles.value.push(element.handle);
+      });
+      // handles.value.push(...response.data)
       console.log('handles:', handles);
     })
     .catch((error: any) => {

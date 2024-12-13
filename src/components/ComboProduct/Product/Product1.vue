@@ -1,10 +1,11 @@
 <template lang="pug">
-.skeleton(v-if="!render", style="background-color: gray;")
+.skeleton(v-if="render==0", style="background-color: gray;")
   br
   br
   br
   br
-.product(v-else)
+.fail(v-else-if="render==-1")
+.product(v-else, :style="bgColor")
   .attribute
     img.image(:src="product.images[selectedVariant-1].src",:alt="product.image.alt",@click="productClick")
     .information
@@ -16,84 +17,99 @@
 </template>
 
 <script setup lang="ts">
-<<<<<<< HEAD
 import { inject, computed, reactive, defineProps, ref } from 'vue'
-=======
-import { computed, defineProps } from 'vue'
->>>>>>> parent of d923750 (Update: each product component get data itself)
 import axios from 'axios'
 import type { IProduct, IConfig } from '@/types';
-import { addToCart, redirect } from '@/services';
-import { ref } from 'vue';
+import { addToCart, redirect, jsonUrl, refresh, request, productUrl } from '@/services';
 
-<<<<<<< HEAD
 const rendered = inject<number>('rendered');
 const props = defineProps<{ handle: string, configs: IConfig }>();
 const product = reactive<IProduct>({} as IProduct);
-const url = `https://vtzy11.myshopify.com/products/${props.handle}`;
 const selectedVariant = ref(1);
-const startPoint = 'https://localhost:443'
-=======
-
-const props = defineProps<{ product: IProduct; configs: IConfig }>();
-console.log("product:", props.product);
-const selectedVariant = ref(1);
-const pid = props.product.id
-// const ngrok = 'https://9d28-183-80-115-217.ngrok-free.app'
-const ngrok = 'https://localhost:443'
->>>>>>> parent of d923750 (Update: each product component get data itself)
 const colorConfig = computed(() => ({
   color: props.configs?.text_color || '#000',
 }));
+const bgColor = computed(() => ({
+  backgroundColor: props.configs?.background_color || '#eee',
+}));
+const loaded = ref(0);
 const render = computed(() => {
-  if(Object.keys(product).length > 1) {
+  if(loaded.value == 1) {
     rendered.value++;
-    return true;
+    if(Object.keys(product).length > 1) {
+      return 1;
+    }
+    else {
+      return -1;
+    }
   }
   else {
-    rendered.value--;
-    return false;
+    return 0;
   }
 });
 import data from '../new.json';
 
 console.log("prop", data.products[0])
-Object.assign(product, data.products[0]);
-console.log("product", product)
-console.log(props.configs?.text_color);
-<<<<<<< HEAD
-=======
-console.log("variant", props.product.variants[0].id)
->>>>>>> parent of d923750 (Update: each product component get data itself)
 
+const options = {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}
+
+console.log(window.location.href)
+console.log(jsonUrl(props.handle))
+
+request(jsonUrl(props.handle), options)
+  .then((response: { product: IProduct }) => {
+    console.log('jsonjsonsj', response)
+    loaded.value = 1;
+    Object.assign(product, response.product);
+  })
+  .catch((error: any) => {
+    console.error('json', error)
+  })
+
+const startPoint = 'https://localhost:443'
 async function clickAddToCart() {
-  const prod = props.product.variants[selectedVariant.value-1].id
-  console.log('Add to cart:', prod);
-  addToCart(Number(prod));
+  const prod = product.variants[selectedVariant.value-1].id
+  console.log('Add ', prod, "to cart");
   const body = {
     number_of_items: 1,
+    product_id: product.id,
   }
-<<<<<<< HEAD
-  const response = await axios.post(`${startPoint}/api/sdk/products/${props.handle}/add-to-cart`, body)
-  console.log('Success cart:', response)
-  window.location.href = window.location.href;
+  try {
+    addToCart(prod, 1);
+    const response = await axios.post(`${startPoint}/api/sdk/events/add-to-cart`, body)
+    if (response.status !== 200 || response.data.error) {
+      throw new Error(response.data.error || 'unexpected error occurred');
+    }   
+    console.log('cart:', response)
+    refresh();
+  } catch (error) {
+    console.error('Error adding to cart, please try again', error);
+    alert('Error adding to cart, please try again');
+  }
 }
 
 async function productClick() {
-  console.log('Product clicked:', product.title);
-  redirect(product.title);
-  const response = await axios.post(`${startPoint}/api/sdk/products/${props.handle}/click`)
-=======
-  const response = await axios.post(`${ngrok}/api/sdk/products/${pid}/add-to-cart`, body)
-  console.log('Success cart:', response)
-}
-
-async function productClick() {
-  console.log('Product clicked:', props.product.title);
-  redirect(props.product.title);
-  const response = await axios.post(`${ngrok}/api/sdk/products/${pid}/click`)
->>>>>>> parent of d923750 (Update: each product component get data itself)
-  console.log('Success click:', response)
+  const body = {
+    product_id: product.id,
+  }
+  try {
+    redirect(productUrl()+props.handle);
+    const response = await axios.post(`${startPoint}/api/sdk/events/click`, body)
+    if (response.status !== 200 || response.data.error) {
+      throw new Error(response.data.error || 'unexpected error occurred');
+    }   
+    console.log(response)
+    console.log('click:', productUrl()+props.handle)
+    redirect(productUrl()+props.handle);
+  } catch (error) {
+    console.error('Error clicking product, please try again', error);
+    alert('Error clicking product, please try again');
+  }
 }
 </script>
 

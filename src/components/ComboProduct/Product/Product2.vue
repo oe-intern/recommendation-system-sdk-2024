@@ -18,14 +18,16 @@ import { addToCart } from '@/services';
 console.log('jiefjls')
 const selectedVariant = ref(1);
 const ngrok = 'https://localhost:443';
-const props = defineProps<{ product: IProduct, configs: IConfig }>()
+const props = defineProps<{ handle: string, configs: IConfig }>()
 const pid = props.product.id
 
 const colorConfig = computed(() => ({
   color: props.configs?.text_color || '#000',
 }));
 async function clickAddToCart() {
-  addToCart(Number(props.product.variants[0].id));
+  const prod = product.variants[selectedVariant.value-1].id
+  console.log('Add to cart:', prod);
+  addToCart(Number(prod));
   const body = {
     // product_id: pid,
     number_of_items: 1,
