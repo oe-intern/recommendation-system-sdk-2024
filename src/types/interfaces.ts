@@ -36,3 +36,8 @@ export interface IConfig {
   layout: '' | 'Layout1' | 'layout2' | 'Layout3';
   id: string;
 }
+
+export interface IEntry {
+  id: number;
+  handle: string;
+}
