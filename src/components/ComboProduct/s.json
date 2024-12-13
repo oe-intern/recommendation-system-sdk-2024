@@ -1,194 +1,627 @@
 {
   "products": [
     {
-      "id": "gid://shopify/Product/8909707706614",
-      "title": "Milano Shirt",
-      "handle": "milano-shirt",
-      "category": null,
-      "vendor": "Giorgio Armani",
+      "id": 8739113402590,
+      "title": "Selling Plans Ski Wax",
+      "body_html": null,
+      "vendor": "vtzy11",
+      "product_type": "accessories",
+      "created_at": "2024-11-17T22:50:39-05:00",
+      "handle": "selling-plans-ski-wax",
+      "updated_at": "2024-12-08T21:23:01-05:00",
+      "published_at": "2024-11-17T22:50:40-05:00",
+      "template_suffix": null,
+      "published_scope": "web",
+      "tags": "Accessory, Sport, Winter",
       "variants": [
         {
-          "id": "gid://shopify/ProductVariant/47508129284342"
+          "id": 46067941277918,
+          "product_id": 8739113402590,
+          "title": "Selling Plans Ski Wax",
+          "price": "25",
+          "sku": null,
+          "position": 1,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 57,
+          "image_id": null,
+          "weight": 2.0,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         },
         {
-          "id": "gid://shopify/ProductVariant/47508129317110"
+          "id": 46067941343454,
+          "product_id": 8739113402590,
+          "title": "Special Selling Plans Ski Wax",
+          "price": "50",
+          "sku": null,
+          "position": 2,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Special Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 71,
+          "image_id": null,
+          "weight": 2.5,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         },
         {
-          "id": "gid://shopify/ProductVariant/47508129349878"
-        },
-        {
-          "id": "gid://shopify/ProductVariant/47508129382646"
+          "id": 46067941376222,
+          "product_id": 8739113402590,
+          "title": "Sample Selling Plans Ski Wax",
+          "price": "10",
+          "sku": null,
+          "position": 3,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Sample Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 14,
+          "image_id": null,
+          "weight": 0.5,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         }
       ],
-      "tags": ["03/20", "AW15", "button-ups", "full moon", "homecore", "man", "newman", "signature", "stripesmen", "tops", "white"],
-      "status": "ACTIVE",
-      "productType": "men's button-ups",
-      "totalInventory": 1,
-      "description": "This is a demonstration store. You can purchase products like this from Baby & CompanyThe Milano Shirt is classically tailored as the everyday button up shirt for both casual and more formal wear. Red embroidery cascades the center back seam as a nicely added detail. Covered button placket closure at front. Homecore. Color White. 100% Cotton. Made in Portugal. Jacob is wearing a Medium. Also available in Navy. Shop our collection of Homecore.",
-      "featuredMedia": {
-        "id": "gid://shopify/MediaImage/34574809628918",
-        "alt": "",
-        "mediaContentType": "IMAGE",
-        "preview": {
-          "image": {
-            "url": "https://cdn.shopify.com/s/files/1/0731/4558/1814/files/5592345600_2_1_2.jpg?v=1732588532"
-          }
+      "options": [
+        {
+          "id": 11116991906014,
+          "product_id": 8739113402590,
+          "name": "Title",
+          "position": 1,
+          "values": ["Selling Plans Ski Wax", "Special Selling Plans Ski Wax", "Sample Selling Plans Ski Wax"]
         }
-      },
-      "priceRangeV2": {
-        "maxVariantPrice": {
-          "amount": "178.0",
-          "currencyCode": "VND"
+      ],
+      "images": [
+        {
+          "id": 42750550933726,
+          "product_id": 8739113402590,
+          "position": 1,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "A bar of golden yellow wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/snowboard_wax.png?v=1731901841",
+          "variant_ids": []
         },
-        "minVariantPrice": {
-          "amount": "178.0",
-          "currencyCode": "VND"
+        {
+          "id": 42750550802654,
+          "product_id": 8739113402590,
+          "position": 2,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "A bar of purple wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/wax-special.png?v=1731901841",
+          "variant_ids": []
+        },
+        {
+          "id": 42750550737118,
+          "product_id": 8739113402590,
+          "position": 3,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "a small cube of wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/sample-normal-wax.png?v=1731901841",
+          "variant_ids": []
         }
+      ],
+      "image": {
+        "id": 42750550933726,
+        "product_id": 8739113402590,
+        "position": 1,
+        "created_at": "2024-11-17T22:50:39-05:00",
+        "updated_at": "2024-11-17T22:50:41-05:00",
+        "alt": "A bar of golden yellow wax",
+        "width": 2881,
+        "height": 2881,
+        "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/snowboard_wax.png?v=1731901841",
+        "variant_ids": []
       }
     },
     {
-      "id": "gid://shopify/Product/8909708558582",
-      "title": "Sweatshirt with slogan on back",
-      "handle": "sweatshirt-with-slogan-on-back",
-      "category": {
-        "id": "gid://shopify/TaxonomyCategory/aa-1-4"
-      },
-      "vendor": "Mango",
+      "id": 8739113402590,
+      "title": "Selling Plans Ski Wax",
+      "body_html": null,
+      "vendor": "vtzy11",
+      "product_type": "accessories",
+      "created_at": "2024-11-17T22:50:39-05:00",
+      "handle": "selling-plans-ski-wax",
+      "updated_at": "2024-12-08T21:23:01-05:00",
+      "published_at": "2024-11-17T22:50:40-05:00",
+      "template_suffix": null,
+      "published_scope": "web",
+      "tags": "Accessory, Sport, Winter",
       "variants": [
         {
-          "id": "gid://shopify/ProductVariant/47508131807478"
+          "id": 46067941277918,
+          "product_id": 8739113402590,
+          "title": "Selling Plans Ski Wax",
+          "price": "25",
+          "sku": null,
+          "position": 1,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 57,
+          "image_id": null,
+          "weight": 2.0,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         },
         {
-          "id": "gid://shopify/ProductVariant/47508131840246"
+          "id": 46067941343454,
+          "product_id": 8739113402590,
+          "title": "Special Selling Plans Ski Wax",
+          "price": "50",
+          "sku": null,
+          "position": 2,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Special Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 71,
+          "image_id": null,
+          "weight": 2.5,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         },
         {
-          "id": "gid://shopify/ProductVariant/47508131873014"
-        },
-        {
-          "id": "gid://shopify/ProductVariant/47508131905782"
-        },
-        {
-          "id": "gid://shopify/ProductVariant/47508131938550"
+          "id": 46067941376222,
+          "product_id": 8739113402590,
+          "title": "Sample Selling Plans Ski Wax",
+          "price": "10",
+          "sku": null,
+          "position": 3,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Sample Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 14,
+          "image_id": null,
+          "weight": 0.5,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         }
       ],
-      "tags": ["2/16", "blue", "cooloff", "dresses", "lilith", "ondee", "SALE", "ss15", "visible", "WEEK08", "woman"],
-      "status": "ACTIVE",
-      "productType": "women's dresses",
-      "totalInventory": 3,
-      "description": "The Relax Dress tea-length with a full skirt. Reinvented v-neckline. Capped mesh sleeves. Lilith. Color Ondee. 100% Cotton, Mesh Overlay 100% Polyester. Ashley is wearing an X-Small. Shop our collection of Lilith.",
-      "featuredMedia": {
-        "id": "gid://shopify/MediaImage/34574818279670",
-        "alt": "",
-        "mediaContentType": "IMAGE",
-        "preview": {
-          "image": {
-            "url": "https://cdn.shopify.com/s/files/1/0731/4558/1814/files/9593303306_2_1_2.jpg?v=1732588595"
-          }
+      "options": [
+        {
+          "id": 11116991906014,
+          "product_id": 8739113402590,
+          "name": "Title",
+          "position": 1,
+          "values": ["Selling Plans Ski Wax", "Special Selling Plans Ski Wax", "Sample Selling Plans Ski Wax"]
         }
-      },
-      "priceRangeV2": {
-        "maxVariantPrice": {
-          "amount": "335.0",
-          "currencyCode": "VND"
+      ],
+      "images": [
+        {
+          "id": 42750550933726,
+          "product_id": 8739113402590,
+          "position": 1,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "A bar of golden yellow wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/snowboard_wax.png?v=1731901841",
+          "variant_ids": []
         },
-        "minVariantPrice": {
-          "amount": "335.0",
-          "currencyCode": "VND"
+        {
+          "id": 42750550802654,
+          "product_id": 8739113402590,
+          "position": 2,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "A bar of purple wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/wax-special.png?v=1731901841",
+          "variant_ids": []
+        },
+        {
+          "id": 42750550737118,
+          "product_id": 8739113402590,
+          "position": 3,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "a small cube of wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/sample-normal-wax.png?v=1731901841",
+          "variant_ids": []
         }
+      ],
+      "image": {
+        "id": 42750550933726,
+        "product_id": 8739113402590,
+        "position": 1,
+        "created_at": "2024-11-17T22:50:39-05:00",
+        "updated_at": "2024-11-17T22:50:41-05:00",
+        "alt": "A bar of golden yellow wax",
+        "width": 2881,
+        "height": 2881,
+        "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/snowboard_wax.png?v=1731901841",
+        "variant_ids": []
       }
     },
     {
-      "id": "gid://shopify/Product/8909708689654",
-      "title": "No Sleeve Night Top",
-      "handle": "no-sleeve-night-top",
-      "category": {
-        "id": "gid://shopify/TaxonomyCategory/aa-1-4"
-      },
-      "vendor": "ASOS",
+      "id": 8739113402590,
+      "title": "Selling Plans Ski Wax",
+      "body_html": null,
+      "vendor": "vtzy11",
+      "product_type": "accessories",
+      "created_at": "2024-11-17T22:50:39-05:00",
+      "handle": "selling-plans-ski-wax",
+      "updated_at": "2024-12-08T21:23:01-05:00",
+      "published_at": "2024-11-17T22:50:40-05:00",
+      "template_suffix": null,
+      "published_scope": "web",
+      "tags": "Accessory, Sport, Winter",
       "variants": [
         {
-          "id": "gid://shopify/ProductVariant/47508132233462"
+          "id": 46067941277918,
+          "product_id": 8739113402590,
+          "title": "Selling Plans Ski Wax",
+          "price": "25",
+          "sku": null,
+          "position": 1,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 57,
+          "image_id": null,
+          "weight": 2.0,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         },
         {
-          "id": "gid://shopify/ProductVariant/47508132266230"
+          "id": 46067941343454,
+          "product_id": 8739113402590,
+          "title": "Special Selling Plans Ski Wax",
+          "price": "50",
+          "sku": null,
+          "position": 2,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Special Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 71,
+          "image_id": null,
+          "weight": 2.5,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         },
         {
-          "id": "gid://shopify/ProductVariant/47508132298998"
-        },
-        {
-          "id": "gid://shopify/ProductVariant/47508132331766"
-        },
-        {
-          "id": "gid://shopify/ProductVariant/47508132364534"
+          "id": 46067941376222,
+          "product_id": 8739113402590,
+          "title": "Sample Selling Plans Ski Wax",
+          "price": "10",
+          "sku": null,
+          "position": 3,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Sample Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 14,
+          "image_id": null,
+          "weight": 0.5,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         }
       ],
-      "tags": ["dress", "dresses", "gold", "just in case", "SALE", "Shot 4/19", "silver", "SS15", "white", "woman", "womens"],
-      "status": "ACTIVE",
-      "productType": "women's dresses",
-      "totalInventory": 5,
-      "description": "This is a demonstration store. You can purchase products like this from Baby & CompanyThe softened color palette invokes feelings of a childhood summer, now long lost, but the memories remain. Get your groove on with this beauty from Just in Case. Invisible zip closure at center back. Fully lined. Color Silver. Body 57% Polyester, 29% Acetate, 14% Polyester Metal, Skirt 50% Cotton, 42% Polyester, 8% Polyester Metal, Waist band 100% Polyester, Lining 100% Cotton. Lana is wearing a French 36. Shop our collection of Just in Case",
-      "featuredMedia": {
-        "id": "gid://shopify/MediaImage/34574819164406",
-        "alt": "",
-        "mediaContentType": "IMAGE",
-        "preview": {
-          "image": {
-            "url": "https://cdn.shopify.com/s/files/1/0731/4558/1814/files/9472319800_2_1_2.jpg?v=1732588600"
-          }
+      "options": [
+        {
+          "id": 11116991906014,
+          "product_id": 8739113402590,
+          "name": "Title",
+          "position": 1,
+          "values": ["Selling Plans Ski Wax", "Special Selling Plans Ski Wax", "Sample Selling Plans Ski Wax"]
         }
-      },
-      "priceRangeV2": {
-        "maxVariantPrice": {
-          "amount": "272.0",
-          "currencyCode": "VND"
+      ],
+      "images": [
+        {
+          "id": 42750550933726,
+          "product_id": 8739113402590,
+          "position": 1,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "A bar of golden yellow wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/snowboard_wax.png?v=1731901841",
+          "variant_ids": []
         },
-        "minVariantPrice": {
-          "amount": "272.0",
-          "currencyCode": "VND"
+        {
+          "id": 42750550802654,
+          "product_id": 8739113402590,
+          "position": 2,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "A bar of purple wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/wax-special.png?v=1731901841",
+          "variant_ids": []
+        },
+        {
+          "id": 42750550737118,
+          "product_id": 8739113402590,
+          "position": 3,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "a small cube of wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/sample-normal-wax.png?v=1731901841",
+          "variant_ids": []
         }
+      ],
+      "image": {
+        "id": 42750550933726,
+        "product_id": 8739113402590,
+        "position": 1,
+        "created_at": "2024-11-17T22:50:39-05:00",
+        "updated_at": "2024-11-17T22:50:41-05:00",
+        "alt": "A bar of golden yellow wax",
+        "width": 2881,
+        "height": 2881,
+        "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/snowboard_wax.png?v=1731901841",
+        "variant_ids": []
       }
     },
     {
-      "id": "gid://shopify/Product/8909707837686",
-      "title": "Mashmallow Top",
-      "handle": "mashmallow-top-in-red",
-      "category": null,
-      "vendor": "Giorgio Armani",
+      "id": 8739113402590,
+      "title": "Selling Plans Ski Wax",
+      "body_html": null,
+      "vendor": "vtzy11",
+      "product_type": "accessories",
+      "created_at": "2024-11-17T22:50:39-05:00",
+      "handle": "selling-plans-ski-wax",
+      "updated_at": "2024-12-08T21:23:01-05:00",
+      "published_at": "2024-11-17T22:50:40-05:00",
+      "template_suffix": null,
+      "published_scope": "web",
+      "tags": "Accessory, Sport, Winter",
       "variants": [
         {
-          "id": "gid://shopify/ProductVariant/47508129612022"
+          "id": 46067941277918,
+          "product_id": 8739113402590,
+          "title": "Selling Plans Ski Wax",
+          "price": "25",
+          "sku": null,
+          "position": 1,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 57,
+          "image_id": null,
+          "weight": 2.0,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         },
         {
-          "id": "gid://shopify/ProductVariant/47508129644790"
+          "id": 46067941343454,
+          "product_id": 8739113402590,
+          "title": "Special Selling Plans Ski Wax",
+          "price": "50",
+          "sku": null,
+          "position": 2,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Special Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 71,
+          "image_id": null,
+          "weight": 2.5,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         },
         {
-          "id": "gid://shopify/ProductVariant/47508129677558"
+          "id": 46067941376222,
+          "product_id": 8739113402590,
+          "title": "Sample Selling Plans Ski Wax",
+          "price": "10",
+          "sku": null,
+          "position": 3,
+          "compare_at_price": "",
+          "fulfillment_service": "manual",
+          "inventory_management": "shopify",
+          "option1": "Sample Selling Plans Ski Wax",
+          "option2": null,
+          "option3": null,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-12-08T21:23:01-05:00",
+          "taxable": true,
+          "barcode": null,
+          "grams": 14,
+          "image_id": null,
+          "weight": 0.5,
+          "weight_unit": "oz",
+          "requires_shipping": true,
+          "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+          "price_currency": "VND",
+          "compare_at_price_currency": "",
+          "quantity_price_breaks": []
         }
       ],
-      "tags": ["02/12", "beige", "blouses", "cooloff", "nautical", "NICO", "putty", "SALE", "ss15", "tan", "tops", "visible", "woman"],
-      "status": "ACTIVE",
-      "productType": "women's tops",
-      "totalInventory": 2,
-      "description": "This is a demonstration store. You can purchase products like this from Baby & CompanyThe Marshmallow is a sweet piece for 2015. Wide scoop neckline. Elastic band at waist. Single button closure at center back neck. Lined. Nicholson & Nicholson. Color Beige. 100% Cotton. Made in Japan. Lana is wearing a French 38. Also available in Blue. Shop our collection of NICO, Nicholson & Nicholson.",
-      "featuredMedia": {
-        "id": "gid://shopify/MediaImage/34574810677494",
-        "alt": "",
-        "mediaContentType": "IMAGE",
-        "preview": {
-          "image": {
-            "url": "https://cdn.shopify.com/s/files/1/0731/4558/1814/files/5471372600_2_3_2.jpg?v=1732588540"
-          }
+      "options": [
+        {
+          "id": 11116991906014,
+          "product_id": 8739113402590,
+          "name": "Title",
+          "position": 1,
+          "values": ["Selling Plans Ski Wax", "Special Selling Plans Ski Wax", "Sample Selling Plans Ski Wax"]
         }
-      },
-      "priceRangeV2": {
-        "maxVariantPrice": {
-          "amount": "209.0",
-          "currencyCode": "VND"
+      ],
+      "images": [
+        {
+          "id": 42750550933726,
+          "product_id": 8739113402590,
+          "position": 1,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "A bar of golden yellow wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/snowboard_wax.png?v=1731901841",
+          "variant_ids": []
         },
-        "minVariantPrice": {
-          "amount": "209.0",
-          "currencyCode": "VND"
+        {
+          "id": 42750550802654,
+          "product_id": 8739113402590,
+          "position": 2,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "A bar of purple wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/wax-special.png?v=1731901841",
+          "variant_ids": []
+        },
+        {
+          "id": 42750550737118,
+          "product_id": 8739113402590,
+          "position": 3,
+          "created_at": "2024-11-17T22:50:39-05:00",
+          "updated_at": "2024-11-17T22:50:41-05:00",
+          "alt": "a small cube of wax",
+          "width": 2881,
+          "height": 2881,
+          "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/sample-normal-wax.png?v=1731901841",
+          "variant_ids": []
         }
+      ],
+      "image": {
+        "id": 42750550933726,
+        "product_id": 8739113402590,
+        "position": 1,
+        "created_at": "2024-11-17T22:50:39-05:00",
+        "updated_at": "2024-11-17T22:50:41-05:00",
+        "alt": "A bar of golden yellow wax",
+        "width": 2881,
+        "height": 2881,
+        "src": "https://cdn.shopify.com/s/files/1/0720/8285/0014/files/snowboard_wax.png?v=1731901841",
+        "variant_ids": []
       }
     }
   ]
