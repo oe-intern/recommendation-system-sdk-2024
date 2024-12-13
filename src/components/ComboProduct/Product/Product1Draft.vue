@@ -23,7 +23,6 @@ const colorConfig = computed(() => ({
   color: props.configs?.text_color || '#000',
 }));
 
-// Tính toán màu nền dựa trên config
 const backgroundColorConfig = computed(() => ({
   backgroundColor: props.configs?.background_color || '#000',
 }));
