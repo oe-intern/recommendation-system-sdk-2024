@@ -1,79 +1,42 @@
 <template lang="pug">
 .combo-product
-  .Handle(v-if="haveData") Something special in there
-  .title(v-else) Frequent bought together
-  .list-products(v-if="configs.layout !== 'layout2'")
+  .title Frequent bought together
+  .list-products(v-if="configs.layout !== 'Layout1'")
     product1(
-      v-for="handle in handles.slice(0, configs.number_of_items)" 
-      :key="`view1-${handle}`"
-      :handle="handle",
+      v-for="product in products.slice(0, configs.number_of_items)" 
+      :key="`view1-${product}`"
+      :product="product",
       :configs="configs",
     )
   .list-products2(v-else)
     product2(
-      v-for="handle in handles" 
-      :key="`view2-${handle}`"
-      :handle="handle"
+      v-for="product in products.slice(0, configs.number_of_items)" 
+      :key="`view2-${product}`"
+      :product="product"
       :configs="configs",
     )
 </template>
 
 <script setup lang="ts">
 
-import type { IConfig, IEntry } from '@/types'
-import { reactive, onMounted, ref, computed, provide } from 'vue'
-import { cutProduct, request } from '@/services'
+import type { IProduct, IConfig } from '@/types'
+import { reactive, ref, provide } from 'vue'
 import Product1 from './Product/Product1.vue'
-import Product2 from './Product/Product2.vue'
+// import Product2 from './Product/Product2.vue'
 console.log('ComboProduct.vue')
 const configs = reactive<IConfig>({} as IConfig)
-const props = defineProps({id: String});
-
+const products = reactive<IProduct[]>([]);
+import data from './new.json';
+console.log(data)
+products.push(...data.products)
+configs.background_color = "#fff";
+configs.layout = 'Layout2';
+configs.number_of_items = 3;
+configs.text_color = "#000";
 const rendered = ref(0);
-const haveData = computed(() => {
-  if(rendered.value <= 0) return true
-  else return false;
-})
 provide('rendered', rendered);
 
-const handles = ref<string[]>([])
-// handles.value.push("pendant-earrings");
-// handles.value.push("18k-bloom-earrings");
-// handles.value.push("no=problem");
 
-const options = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-}
-console.log('v9');
-
-const endpointRecommend = `https://localhost/api/sdk/products/${props.id}/recommendations`
-const endpointSettings = `https://localhost/api/sdk/shop/settings`
-onMounted(() => {
-  request(endpointRecommend, options)
-    .then((response: { data: IEntry[] }) => {
-      console.log('Products fetched:', response.data)
-      response.data.forEach(element => {
-        handles.value.push(element.handle);
-      });
-      // handles.value.push(...response.data)
-      console.log('handles:', handles);
-    })
-    .catch((error: any) => {
-      console.error('Error fetching recommendations:', error)
-    })
-
-  request(endpointSettings, options)
-    .then((response: { data: IConfig }) => {
-      console.log('Config fetched:', response.data)
-      Object.assign(configs, response.data)
-    })
-    .catch((error: any) => {
-      console.error('Error fetching settings:', error)
-    })
-})
 </script>
 
 <style lang="scss" scoped>
