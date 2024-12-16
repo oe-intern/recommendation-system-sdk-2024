@@ -27,7 +27,7 @@ const colorConfig = computed(() => ({
 async function clickAddToCart() {
   const prod = product.variants[selectedVariant.value-1].id
   console.log('Add to cart:', prod);
-  addToCart(Number(prod));
+  addToCart(Number(prod), 1);
   const body = {
     // product_id: pid,
     number_of_items: 1,
