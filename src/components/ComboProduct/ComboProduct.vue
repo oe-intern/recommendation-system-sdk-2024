@@ -1,32 +1,33 @@
 <template lang="pug">
-.combo-product
-  .title
-    | {{ haveData ? 'Frequently bought together' : 'Something special in there' }}
-  .list-products(
-    v-if="configs.layout !== 'layout2'",
+mixin useLayout(produc) 
+  #{produc}(
+    v-for="handle in handles",
+    :key="handle",
+    :handle="handle",
+    :configs="configs",
+    @rendered="rende",
   )
-    product1(
-      v-for="handle in handles.slice(0, configs.number_of_items)",
-      :key="`view1-${handle}`",
-      :handle="handle",
-      :configs="configs",
-      @rendered="rende",
-    )
-  .list-products2(
-    v-else,
+
+div.combo-product
+  div.combo-product__title
+    | {{ title }}
+  div.list-products(
+    v-if="layout === 'Layout1'",
   )
-    product2(
-      v-for="handle in handles", 
-      :key="`view2-${handle}`",
-      :handle="handle",
-      :configs="configs",
-    )
+    +useLayout("Product1")
+  div.list-products2(
+    v-else-if="configs.layout === 'Layout2'",
+  )
+    +useLayout("Product2")
+  div(
+    v-else
+  )
+    | Wrong Layout
 </template>
 
 <script setup lang="ts">
-
 import type { IConfig, IEntry } from '@/types'
-import { reactive, onMounted, ref } from 'vue'
+import { reactive, onMounted, ref, computed } from 'vue'
 import { request } from '@/services'
 import Product1 from './Product/Product1.vue'
 import Product2 from './Product/Product2.vue'
@@ -38,10 +39,17 @@ const rende = () => {
   haveData.value = true;
   console.log("emitted")
 }
+configs.layout = 'Layout1';
+const title = computed(() =>{
+  return haveData.value ? 'Frequently bought together' : 'Something special in there';
+})
+const layout = computed(() =>{
+  return configs.layout
+})
 
 const handles = ref<string[]>([])
-// handles.value.push("pendant-earrings");
-// handles.value.push("18k-bloom-earrings");
+handles.value.push("pendant-earrings");
+handles.value.push("18k-bloom-earrings");
 
 const options = {
   method: 'GET',
