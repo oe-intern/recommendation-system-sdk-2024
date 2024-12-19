@@ -1,52 +1,47 @@
 <template lang="pug">
-mixin useLayout(produc) 
-  #{produc}(
-    v-for="handle in handles",
-    :key="handle",
-    :handle="handle",
-    :configs="configs",
-    @rendered="rende",
-  )
-
 div.combo-product
   div.combo-product__title
     | {{ title }}
-  div.list-products(
-    v-if="layout === 'Layout1'",
-  )
-    +useLayout("Product1")
-  div.list-products2(
-    v-else-if="configs.layout === 'Layout2'",
-  )
-    +useLayout("Product2")
   div(
-    v-else
+    :class="layout"
   )
-    | Wrong Layout
+    component(
+      v-for="handle in handles",
+      :is="product",
+      :handle="handle",
+      :configs="configs",
+      @rendered="rende",
+    )
 </template>
 
 <script setup lang="ts">
 import type { IConfig, IEntry } from '@/types'
-import { reactive, onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, watch } from 'vue'
 import { request } from '@/services'
 import Product1 from './Product/Product1.vue'
 import Product2 from './Product/Product2.vue'
 console.log('ComboProduct.vue')
-const configs = reactive<IConfig>({} as IConfig)
-const props = defineProps({id: String});
+
+const configs = ref<IConfig>({} as IConfig)
+const props = defineProps({ id: String });
 const haveData = ref<boolean>(false);
-const rende = () => {
-  haveData.value = true;
-  console.log("emitted")
-}
-configs.layout = 'Layout1';
 const title = computed(() =>{
   return haveData.value ? 'Frequently bought together' : 'Something special in there';
 })
-const layout = computed(() =>{
-  return configs.layout
-})
+const product = ref(Product1);
+const layout = ref('list-products');
+watch(() => configs.value.layout, (newVal) => {
+  if(newVal === 'Layout1') {
+    product.value = Product1;
+    layout.value = 'list-products';
+    
+  } else {
+    product.value = Product2;
+    layout.value = 'list-products2';
+  }
 
+  console.log('layout changed:', newVal)
+})
 const handles = ref<string[]>([])
 handles.value.push("pendant-earrings");
 handles.value.push("18k-bloom-earrings");
@@ -57,7 +52,11 @@ const options = {
     'Content-Type': 'application/json',
   },
 }
-
+const rende = () => {
+  haveData.value = true;
+  console.log("emitted")
+}
+configs.value.layout = 'Layout1';
 const endpointRecommend = `https://localhost/api/sdk/products/${props.id}/recommendations`
 const endpointSettings = `https://localhost/api/sdk/shop/settings`
 onMounted(() => {
@@ -81,7 +80,7 @@ onMounted(() => {
     .catch((error: any) => {
       console.error('Error fetching settings:', error)
     })
-  handles.value = handles.value.slice(0, configs.number_of_items);
+  handles.value = handles.value.slice(0, configs.value.number_of_items);
 })
 </script>
 
