@@ -1,42 +1,51 @@
 .product {
+  width: 30%;
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 10px;
   color: black;
-  gap: 2px;
+  gap: 2%;
 
   .image {
     align-items: center;
-    height: 100px;
-    width: 100px;
+    width: 100%;
     aspect-ratio: 1 / 1;
     cursor: pointer;
   }
 
   .information {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    font-size: 1vh;
-    width: 100px;
+    width: 110%;
 
     .name {
       text-align: center;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      // white-space: nowrap; 
+      max-height: 3em;
     }
 
     .price {
       text-align: center;
-      font-size: large;
     }
     .variant {
       flex: 1;
       padding: 1px !important;
-      width: fit-content;
+      width: 100%;
+      font-size: 1em;
       cursor: pointer;
-      .choose {
-        color: black;
-      }
+
+      border-radius: 1em;
+      background-color: white;
+      border-color: rgba(0, 0, 0, 0.5);
+      // .choose {
+      //   color: black;
+      // }
     }
 
   }
@@ -46,4 +55,12 @@
     color: white;
     width: 80%;
   }
+}
+
+.connect{
+  font-size: 2vw;
+}
+
+.list-products2 .connect:last-of-type {
+  display: none;
 }

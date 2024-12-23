@@ -14,7 +14,7 @@
     
     .image {
       width: 25%;
-      height: auto;
+      // height: auto;
       cursor: pointer;
       object-fit: contain;
       align-items: center;
@@ -57,7 +57,7 @@
   }
 
   &:hover{
-    scale: 1.1;
-    transition: ease-in 0.3s;
+    scale: 1.05;
+    transition: ease-in 0.15s;
   }
 }
