@@ -1,0 +1,26 @@
+.product-skeleton {
+  font-size: .8vw;
+  gap: 3%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 2.5% !important;
+
+  .image-skeleton {
+    width: 21%;
+    cursor: pointer;
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .attribute-skeleton {
+    gap: 2%;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .text-skeleton {
+    width: 80%;
+  }
+}

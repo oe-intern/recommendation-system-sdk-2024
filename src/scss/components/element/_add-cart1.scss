@@ -1,16 +1,16 @@
 .add-to-cart {
-    background-color: black;
     color: white;
-    display: inline-block;
     font-size: 1em;
-    border-radius: 10px;
-    padding: 0.3em 0.7em !important;
     flex-shrink: 0;
-    flex-basis: auto;
     cursor: pointer;
+    flex-basis: auto;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: black;
+    padding: 0.3em 0.7em !important;
 
     &:hover {
-        background-color: gray;
         scale: 1.1;
+        background-color: gray;
     }
 }

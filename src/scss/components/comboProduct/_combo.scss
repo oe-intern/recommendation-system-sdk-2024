@@ -1,21 +1,22 @@
 .combo-product {
-  font-family: Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
   font-size: 1vw;
   color: black;
+  font-family: Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
 
   &__title {
     color: black;
+    font: 500 1.7vw/1.5 Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
   }
   
   .list-products {
+    gap: 0.7em;
     display: flex;
     flex-direction: column;
-    gap: 0.7em;
   }
  
   .list-products2 {
+    gap: 0.7em;
     display: flex;
     flex-direction: row;
-    gap: 0.7em;
   }
 }
