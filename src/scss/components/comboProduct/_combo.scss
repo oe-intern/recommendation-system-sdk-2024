@@ -2,6 +2,7 @@
   font-size: 1vw;
   color: black;
   font-family: Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
+  width: 100%;
 
   &__title {
     color: black;
@@ -15,10 +16,10 @@
   }
  
   .list-products2 {
-    gap: 0.7em;
+    gap: 0.2em;
+    // gap: 2px;
     display: flex;
     flex-direction: row;
-
   }
   
 }

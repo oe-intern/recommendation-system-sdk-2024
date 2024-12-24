@@ -1,64 +1,71 @@
 .product {
+  gap: 2%;
   width: 30%;
-  align-items: center;
   display: flex;
+  color: black;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  color: black;
-  gap: 2%;
 
   .image {
-    align-items: center;
     width: 100%;
-    aspect-ratio: 1 / 1;
     cursor: pointer;
+    align-items: center;
+    aspect-ratio: 1 / 1;
   }
 
   .information {
-    align-items: center;
+    width: 110%;
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    width: 110%;
 
     .name {
-      text-align: center;
       width: 100%;
+      line-clamp: 2;
+      cursor: pointer;
+      max-height: 3em;  
       overflow: hidden;
+      text-align: center;
+      line-height: 1.5em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
       text-overflow: ellipsis;
-      // white-space: nowrap; 
-      max-height: 3em;
+      -webkit-box-orient: vertical;
     }
 
     .price {
+      font-size: 0.8em;
       text-align: center;
     }
+    
     .variant {
       flex: 1;
-      padding: 1px !important;
       width: 100%;
-      font-size: 1em;
       cursor: pointer;
-
+      font-size: 0.7em;
       border-radius: 1em;
+      padding: 1px !important;
       background-color: white;
       border-color: rgba(0, 0, 0, 0.5);
+      
       // .choose {
       //   color: black;
       // }
     }
-
   }
+  
   .add-to-cart {
     border: 0;
-    background-color: black;
-    color: white;
     width: 80%;
+    border-radius: 20px;
   }
 }
 
 .connect{
   font-size: 2vw;
+  color: rebeccapurple;
 }
 
 .list-products2 .connect:last-of-type {

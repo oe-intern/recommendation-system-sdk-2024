@@ -1,9 +1,9 @@
 <template lang="pug">
 Skeleton(
-  v-if="dataLoaded==false", 
+  v-if="dataLoaded=='notYet'", 
 )
 div.product(
-  v-else-if="dataLoaded==true", 
+  v-else-if="dataLoaded=='true'", 
   :style="bgColor",
 )
   div.product__attribute
@@ -19,7 +19,7 @@ div.product(
       ) 
         | {{ product.title }}
       div.price 
-        | {{ variant.price }}{{ variant.price_currency }}
+        | {{ money }}
       select.variant(
         v-model="selectedVariant",
       )
@@ -32,64 +32,76 @@ div.product(
   AddCart(
     @addToCart="clickAddToCart",
   )
+div(
+  v-else-if="dataLoaded=='false'",
+)
 </template>
 
 
 <script setup lang="ts">
 import type { IProduct, IConfig, IVariant, IImage } from '@/types'
-import { addToCart, redirect, jsonUrl, refresh, request, productUrl } from '@/services'
+import { addToCart, redirect, getDataUrl, refresh, request, getStoreProductsUrl } from '@/services'
 import { computed, reactive, defineProps, ref } from 'vue'
 import axios from 'axios'
+import { Currency } from '@/services'
+import { optionGet } from '@/config'
 
 const { handle, configs } = defineProps<{ handle: string; configs: IConfig }>()
 const product = reactive<IProduct>({} as IProduct)
 const emit = defineEmits()
 const selectedVariant = ref(1)
 
-const variant = computed<IVariant>(() =>
-  product.variants[selectedVariant.value-1],
-)
+const variant = computed<IVariant>(() => {
+  console.log('selectedVariant', selectedVariant.value)
+  return product.variants[selectedVariant.value-1]
+})
 const image = computed<IImage>(() => 
   product.images[selectedVariant.value-1],
 )
+const money = computed(() => {
+  return variant != undefined
+    ? (
+        variant.value.price_currency == '$'
+        ? Currency.formatMoney(variant.value.price, variant.value.price_currency + ' {{amount}}')
+        : variant.value.price + " " + variant.value.price_currency
+      )
+    : '0';
+})
 
-const colorConfig = {color: configs?.text_color || '#000'}
-const bgColor = {backgroundColor : configs?.background_color || '#fff'}
+const colorConfig = {
+  color: configs?.text_color || '#000'
+}
+const bgColor = {
+  backgroundColor : configs?.background_color || '#fff'
+}
 
-const dataLoaded = ref(false)
+const dataLoaded = ref('notYet')
 
 console.log('product')
 import data from '../new.json'
 import AddCart from '@/components/Element/AddCart.vue';
 import Skeleton from './Skeleton/ProductSkeleton.vue';
-if(1) {
+if(0) {
   Object.assign(product, data.products[0]);
-  dataLoaded.value = true;
+  dataLoaded.value = 'true';
   emit('rendered');
 }
 
-console.log('prop', data.products[0])
-const options = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-}
-
 console.log(window.location.href)
-console.log(jsonUrl(handle))
 
-request(jsonUrl(handle), options)
+request(getDataUrl(handle), optionGet)
   .then((response: { product: IProduct }) => {
     console.log('jsonjson', response)
+    console.log(optionGet);
     Object.assign(product, response.product)
     if (response.product) {
-      dataLoaded.value = true;
+      console.log('succ')
+      dataLoaded.value = 'true';
       emit('rendered')
     }
   })
   .catch((error: any) => {
-    dataLoaded.value = false;
+    dataLoaded.value = 'false';
     console.error('json', error)
   })
 
@@ -115,7 +127,6 @@ async function clickAddToCart() {
     alert('Error adding to cart, please try again')
   }
 }
-
 async function productClick() {
   const body = {
     product_id: product.id,
@@ -126,13 +137,14 @@ async function productClick() {
       throw new Error(response.data.error || 'unexpected error occurred')
     }
     console.log(response)
-    console.log('click:', productUrl() + handle)
-    redirect(productUrl() + handle)
+    console.log('click:', getStoreProductsUrl() + handle)
+    redirect(getStoreProductsUrl() + handle)
   } catch (error) {
     console.error('Cannot redirect', error)
     alert('Cannot redirect to this product')
   }
 }
+
 </script>
 
 
