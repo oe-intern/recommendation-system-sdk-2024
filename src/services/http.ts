@@ -46,7 +46,7 @@ export function request(endpoint: string, options?: Record<string, any>, isIgnor
   });
 }
 
-export function addToCart(pid: number, quantity: number = 1) {
+export function addToCart(pid: number, quantity: number) {
     const formData = {
       items: [
         {
@@ -55,8 +55,7 @@ export function addToCart(pid: number, quantity: number = 1) {
         },
       ],
     };
-
-    fetch(window.Shopify.routes.root + 'cart/add.js', {
+    return fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

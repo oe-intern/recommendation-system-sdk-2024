@@ -1,4 +1,3 @@
-import type { IEntry } from "@/interfaces";
 export { };
 
 declare global {
