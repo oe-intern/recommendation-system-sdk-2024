@@ -50,7 +50,9 @@ const handles = ref<string[]>([])
 // handles.value.push("18k-bloom-earrings");
 import { optionGet, endpointSettings, getHandlesApi } from '@/config';
 
-configs.value.layout = 'Layout2';
+configs.value.background_color = '#fff';
+configs.value.text_color = '#000';
+configs.value.layout = 'Layout1';
 
 onMounted(() => {
   request(getHandlesApi(props.id), optionGet)
