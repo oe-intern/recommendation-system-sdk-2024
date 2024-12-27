@@ -1,49 +1,73 @@
 .product {
+  gap: 2%;
+  width: 30%;
   display: flex;
+  color: black;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  font-size: 10px;
-  color: black;
-  gap: 2px;
 
   .image {
-    align-items: center;
-    height: 100px;
-    width: 100px;
-    aspect-ratio: 1 / 1;
+    width: 100%;
     cursor: pointer;
+    align-items: center;
+    aspect-ratio: 1 / 1;
   }
 
   .information {
+    width: 110%;
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    font-size: 1vh;
-    width: 100px;
 
     .name {
+      width: 100%;
+      line-clamp: 2;
+      cursor: pointer;
+      max-height: 3em;  
+      overflow: hidden;
       text-align: center;
+      line-height: 1.5em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
     }
 
     .price {
+      font-size: 0.8em;
       text-align: center;
-      font-size: large;
     }
+    
     .variant {
       flex: 1;
-      padding: 1px !important;
-      width: fit-content;
+      width: 100%;
       cursor: pointer;
-      .choose {
-        color: black;
-      }
+      font-size: 0.7em;
+      border-radius: 1em;
+      padding: 1px !important;
+      background-color: white;
+      border-color: rgba(0, 0, 0, 0.5);
+      
+      // .choose {
+      //   color: black;
+      // }
     }
-
   }
+  
   .add-to-cart {
     border: 0;
-    background-color: black;
-    color: white;
     width: 80%;
+    border-radius: 20px;
   }
+}
+
+.connect{
+  font-size: 2vw;
+  color: rebeccapurple;
+}
+
+.list-products2 .connect:last-of-type {
+  display: none;
 }

@@ -1,3 +1,5 @@
+export * from './url';
+
 function convertFetchResponse(response: any) {
   const data = {
     statusCode: response.status,
@@ -44,20 +46,16 @@ export function request(endpoint: string, options?: Record<string, any>, isIgnor
   });
 }
 
-export function addToCart(pid: number) {
-    console.log(pid);
-    // Example form data
+export function addToCart(pid: number, quantity: number) {
     const formData = {
       items: [
         {
           id: pid, 
-          quantity: 1, 
+          quantity: quantity, 
         },
       ],
     };
-
-    // Send a POST request to Shopify's cart/add.js endpoint
-    fetch(window.Shopify.routes.root + 'cart/add.js', {
+    return fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,45 +74,7 @@ export function addToCart(pid: number) {
       })
       .catch((error) => {
         console.error('Error:', error);
-        // alert('Failed to add product to cart.');
+        alert('Failed to add product to cart.');
       });
-    getCart();
-}
-export function getCart() {
-  console.log('getCart');
-  fetch(window.Shopify.routes.root + 'cart/add.js', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Failed cart');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log('Item cart:', data);
-      // alert('Product added to cart!');
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
 }
 
-function transformToHandle(input: string) {
-    return input
-        .toLowerCase() // Convert to lowercase
-        .replace(/[^a-z0-9\s-]/g, "") // Remove special characters except spaces and hyphens
-        .replace(/\s+/g, "-") // Replace spaces with hyphens
-        .trim(); // Remove leading/trailing spaces
-}
-export function redirect (productName : string){
-    const currentUrl = window.location.href;
-    console.log(currentUrl);
-    const productPath = currentUrl.split("?")[0].split("/products")[0] + "/products";
-    const clickProductUrl = productPath+'/'+transformToHandle(productName);
-    console.log(clickProductUrl);
-    window.location.href = clickProductUrl;
-}

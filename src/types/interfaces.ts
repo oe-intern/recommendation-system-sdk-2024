@@ -33,6 +33,11 @@ export interface IConfig {
   number_of_items: number;
   background_color: string;
   text_color: string;
-  layout: '' | 'Layout1' | 'layout2' | 'Layout3';
+  layout: '' | 'Layout1' | 'Layout2' | 'Layout3';
   id: string;
+}
+
+export interface IEntry {
+  id: number;
+  handle: string;
 }
