@@ -84,6 +84,7 @@ console.log('product')
 import data from '../new.json'
 import AddCart from '@/components/Element/AddCart.vue';
 import Skeleton from './Skeleton/ProductSkeleton2.vue';
+
 if(0) {
   Object.assign(product, data.products[0]);
   dataLoaded.value = 'true';
@@ -110,12 +111,14 @@ request(getDataUrl(handle), optionGet)
 
 const startPoint = 'https://localhost:443'
 async function clickAddToCart() {
-  const prod = variant.value.id
-  console.log('Add ', prod, 'to cart')
+  const prod = variant.value.id;
+  console.log('Add ', prod, 'to cart');
+
   const body = {
     number_of_items: 1,
     product_id: product.id,
   }
+  
   try {
     await addToCart(prod, 1)
     const response = await axios.post(`${startPoint}/api/sdk/events/add-to-cart`, body)
@@ -130,10 +133,12 @@ async function clickAddToCart() {
     alert('Error adding to cart, please try again')
   }
 }
+
 async function productClick() {
   const body = {
     product_id: product.id,
   }
+
   try {
     const response = await axios.post(`${startPoint}/api/sdk/events/click`, body)
     if (response.status !== 200 || response.data.error) {

@@ -6,6 +6,7 @@
       :src="image.src",
       :alt="image.alt",
     )
+
     div.information
       a.name(
         :style="colorConfig", 
@@ -13,6 +14,7 @@
         | {{ product.title }}
       div.price 
         | {{ money }}
+
       select.variant(
         v-model="selectedVariant",
       )
@@ -22,6 +24,7 @@
           :value="variant.position",
         ) 
           | &nbsp; {{ variant.title }}
+          
     button.add-to-cart() Add
   div.connect(
     style="align-content: center;"
@@ -54,10 +57,6 @@ const money = computed(() => {
   const price = props.product.variants.find((variant) => variant.position === selectedVariant.value)?.price;
   return price ? `$${price}` : '';
 });
-
-function clickAddToCart() {
-  console.log('clickAddToCart', props.product, selectedVariant.value);
-}
 
 </script>
 

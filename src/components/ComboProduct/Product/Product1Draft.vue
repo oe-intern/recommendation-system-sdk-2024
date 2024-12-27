@@ -23,10 +23,8 @@
             :value="variant.position",
           ) 
             | &nbsp; {{ variant.title }}
-    button.add-to-cart(
-    ) 
-      |Add
-  </template>
+    button.add-to-cart() Add
+</template>
 
 <script setup lang="ts">
 import { computed, defineProps } from 'vue'
@@ -45,19 +43,14 @@ const backgroundColorConfig = computed(() => ({
 }));
 
 const image = computed(() => ({
-  src: props.product.image.src,
-  alt: props.product.image.alt,
+  src: props.product.images[selectedVariant.value-1].src,
+  alt: props.product.images[selectedVariant.value-1].alt,
 }));
 
 const money = computed(() => {
   const price = props.product.variants.find((variant) => variant.position === selectedVariant.value)?.price;
   return price ? `$${price}` : '';
 });
-
-function clickAddToCart() {
-  console.log('clickAddToCart', props.product, selectedVariant.value);
-}
-
 </script>
 
 <style lang="scss" scoped>
