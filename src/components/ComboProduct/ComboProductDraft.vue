@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
-import Product1 from './Product/Product1draft.vue'
+import Product1 from './Product/Product1Draft.vue'
 import Product2 from './Product/Product2Draft.vue';
 
 // Define props for the component
