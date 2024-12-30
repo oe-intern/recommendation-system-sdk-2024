@@ -22,7 +22,7 @@ div.combo-product
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref } from 'vue';
+import { defineProps, computed } from 'vue';
 import Product1 from './Product/Product1Draft.vue'
 import Product2 from './Product/Product2Draft.vue';
 
@@ -38,8 +38,8 @@ const props = defineProps({
   },
 });
 
-const products = ref(props.products);
-const configs = ref(props.configs);
+const products = computed( () => props.products);
+const configs = computed(() => props.configs);
 
 </script>
 
