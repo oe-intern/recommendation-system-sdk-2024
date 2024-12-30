@@ -73,7 +73,7 @@ import { optionPost } from '@/config';
 //     });
 // }
 
-export async function addToCart(pid: number, quantity: number): Promise<boolean> {
+export async function addToCart(pid: number | undefined, quantity: number): Promise<boolean> {
   const formData = {
     items: [
       {

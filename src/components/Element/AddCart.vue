@@ -2,7 +2,8 @@
 button.add-to-cart(
   @click="clickCart",
 ) 
-  | Add
+  slot
+    | Add
 </template>
 
 

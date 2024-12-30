@@ -18,7 +18,7 @@ import { defineProps, provide, reactive } from 'vue'
 import { onMounted } from 'vue';
 
 import { request } from '@/services';
-import type { IProduct, IConfig } from '@/types';
+import type { IProductJson, IConfig } from '@/types';
 import ProductItem from './Item/ProductItem.vue';
 console.log('RelatedItems.vue');
 
@@ -34,7 +34,7 @@ console.log('RelatedItems.vue');
 console.log('props.id:', props);
 
 
-const products = reactive<IProduct[]>([]);
+const products = reactive<IProductJson[]>([]);
 const configs = reactive<IConfig>({} as IConfig);
 
 provide("configs", configs);
@@ -52,7 +52,7 @@ const options = {
 
 onMounted(() => {
   request(endpointRecommend, options)
-    .then((response: { data: IProduct[] }) => {
+    .then((response: { data: IProductJson[] }) => {
       console.log('Products fetched:', response.data);
       products.push(...response.data);
     })

@@ -6,21 +6,26 @@ div.product(
   v-else-if="dataLoaded=='true'", 
   :style="{ ...bgColor, ...opacity }",
 )
-  img.image(
-    :src="image.src",
-    :alt="image.alt",
-    @click="productClick",
-  )
-  div.information
-    a.name(
-      :style="colorConfig", 
-      @click="productClick"
-    ) 
-      | {{ product.title }}
+  div.img
+    img.image(
+      :src="image.src",
+      :alt="image.alt",
+      @click="productClick",
+    )
+    div.sold-out(
+      v-if="!available",
+    )
+      | sold out
     div.price(
       :style="colorConfig",
     )
       | {{ money }}
+  div.information
+    //- a.name(
+    //-   :style="colorConfig", 
+    //-   @click="productClick"
+    //- ) 
+    //-   | {{ product.title }}
     select.variant(
       v-model="selectedVariant",
     )
@@ -31,10 +36,11 @@ div.product(
         :style="colorConfig",
       ) 
         | &nbsp; {{ variant.title }}
-  AddCart(
-    :style="{ ...display }",
+  AddCart.add-to-cart(
+    :disabled="disable",
     @addToCart="clickAddToCart",
   )
+    | {{ available ? "Add" : "Empty" }}
 div(
   v-else-if="dataLoaded=='false'",
 )
@@ -47,87 +53,65 @@ div.connect(
 <script setup lang="ts">
 import type { IVariantJson, IImageJson, IProductJson, IProductJs, IConfig } from '@/types'
 import { addToCart, redirect, getProductJsonUrl, getProductJsUrl, refresh, request, getStoreProductsUrl } from '@/services'
-import { computed, reactive, defineProps, ref } from 'vue'
+import { computed, reactive, defineProps, ref, watch, onMounted } from 'vue'
 import axios from 'axios'
 import { Currency } from '@/services'
-import { optionGet } from '@/config'
+import { optionGet, endPointEvents } from '@/config'
 
 const { handle, configs } = defineProps<{ handle: string; configs: IConfig }>()
 const product = reactive<IProductJson>({} as IProductJson)
 const productJs = reactive<IProductJs>({} as IProductJs)
 const emit = defineEmits()
-const selectedVariant = ref(1)
-
-const variant = computed<IVariantJson>(() => {
-  console.log('selectedVariant', selectedVariant.value)
-  return product.variants[selectedVariant.value-1]
-})
+const selectedVariant = ref()
 const image = computed<IImageJson>(() => 
   product.images[selectedVariant.value-1],
 )
-const money = computed(() => {
-  return variant != undefined
-    ? (
-        variant.value.price_currency == '$'
-        ? Currency.formatMoney(variant.value.price, variant.value.price_currency + ' {{amount}}')
-        : variant.value.price + " " + variant.value.price_currency
-      )
-    : '0';
+const money = ref();
+const available = ref(true);
+const colorConfig = ref({ 
+  color: configs.text_color,
+});
+const bgColor = ref({
+  backgroundColor: configs.background_color,
+});
+const opacity = ref({
+  opacity: 1
 })
-
-const colorConfig = computed(() => {
-  if(configs == undefined) {
-    return {
-      color: '#000'
-    }
+const variant = ref<IVariantJson>();
+const disable = ref(false);
+function availableCheck() {
+  if (available.value === false) {
+    opacity.value = { opacity: 0.7 };
+    disable.value = true;
+  } else {
+    opacity.value = { opacity: 1 };
+    disable.value = false;
   }
-  return {
-    color: configs?.text_color
+}
+watch(selectedVariant, (newSelect) => {
+  variant.value = product.variants[newSelect-1];
+  const variantVal = variant.value;
+  money.value = variant.value.price_currency == '$'
+    ? Currency.formatMoney(variantVal.price, variantVal.price_currency + ' {{amount}}')
+    : variantVal.price + " " + variantVal.price_currency;
+  if(productJs.variants[selectedVariant.value-1].available == false) {
+    available.value = false;
   }
-})
-
-const bgColor = computed(() => {
-  if(configs == undefined) {
-    return {
-      backgroundColor: '#fff'
-    }
-  }
-  return {
-    backgroundColor : configs?.background_color
-  }
-})
-
-const display = computed(() => {
-  if(productJs == undefined) {
-    return {
-    }
-  }
-  return {
-    display: (productJs.variants[selectedVariant.value-1].available == false) ? 'none' : 'block'
+  else {
+    available.value = true;
   }
 })
-
-const opacity = computed(() => {
-  if(productJs == undefined) {
-    return {
-      opacity: 1
-    }
-  }
-  console.log("opacity", productJs.variants[selectedVariant.value-1].available);
-  return {
-    opacity: (productJs.variants[selectedVariant.value-1].available == false) ? 0.4 : 1
-  }
+watch(available, (newVal) => {
+  console.log('available:', newVal)
+  availableCheck()
 })
-
-console.log("oppa", opacity)
+selectedVariant.value = 1;
 const dataLoaded = ref('notYet')
-
-console.log('product')
 import AddCart from '@/components/Element/AddCart.vue';
 import Skeleton from './Skeleton/ProductSkeleton2.vue';
 import data from '../new.json'
 import dataa from '../nn.json'
-if(0) {
+if(1) {
   Object.assign(product, data.products[0]);
   Object.assign(productJs, dataa.product);
   dataLoaded.value = 'true';
@@ -153,22 +137,14 @@ request(getProductJsonUrl(handle), optionGet)
 request(getProductJsUrl(handle), optionGet)
   .then((response: { product: IProductJs }) => {
     console.log('jsjs', response);
-    // console.log(response);
     Object.assign(productJs, response)
-    // if (response.product) {
-    //   console.log('succ')
-    //   dataLoaded.value = 'true';
-    //   emit('rendered')
-    // }
   })
   .catch((error: any) => {
-    // dataLoaded.value = 'false';
     console.error('js', error)
   })
 
-const startPoint = 'https://localhost:443'
 async function clickAddToCart() {
-  const prod = variant.value.id
+  const prod = variant.value?.id;
   console.log('Add ', prod, 'to cart')
   const body = {
     number_of_items: 1,
@@ -179,27 +155,21 @@ async function clickAddToCart() {
       productJs.variants[selectedVariant.value-1].available = false;
       return;
     }
-    const response = await axios.post(`${startPoint}/api/sdk/events/add-to-cart`, body)
-    // if (response.status === 200) {
-      refresh()
-    // } else if (response.status !== 200 || response.data.error) {
-    //   throw new Error(response.data.error || 'unexpected error occurred')
-    // }
+    const response = await axios.post(`${endPointEvents}/add-to-cart`, body)
+    refresh()
     console.log('cart:', response)
   } catch (error) {
     console.error('Error adding to cart, please try again', error)
     alert('Error adding to cart, please try again')
   }
 }
+
 async function productClick() {
   const body = {
     product_id: product.id,
   }
   try {
-    const response = await axios.post(`${startPoint}/api/sdk/events/click`, body)
-    // if (response.status !== 200 || response.data.error) {
-    //   throw new Error(response.data.error || 'unexpected error occurred')
-    // }
+    const response = await axios.post(`${endPointEvents}/click`, body)
     console.log(response)
     console.log('click:', getStoreProductsUrl() + handle)
     redirect(getStoreProductsUrl() + handle)
@@ -208,7 +178,10 @@ async function productClick() {
     alert('Cannot redirect to this product')
   }
 }
-
+onMounted(() => {
+  console.log('available:', available.value);
+  availableCheck();
+});
 </script>
 
 <style lang="scss" scoped>

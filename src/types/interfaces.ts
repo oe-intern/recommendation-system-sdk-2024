@@ -9,6 +9,7 @@ export interface IVariantJson {
   price: string;
   position: number;
   price_currency: string;
+  hehe: number;
 }
 
 export interface IImageJson {
@@ -49,7 +50,7 @@ export interface IConfig {
   number_of_items: number;
   background_color: string;
   text_color: string;
-  layout: '' | 'Layout1' | 'Layout2' | 'Layout3';
+  layout: '' | 'Layout1' | 'layout2' | 'Layout3';
   id: string;
 }
 

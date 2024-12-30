@@ -17,10 +17,10 @@
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
 
-import type { IConfig, IProduct } from '@/types';
+import type { IConfig, IProductJson } from '@/types';
 
 const props = defineProps<{ 
-  product: IProduct;
+  product: IProductJson;
   config: IConfig;
   number_of_items: number;
 }>();

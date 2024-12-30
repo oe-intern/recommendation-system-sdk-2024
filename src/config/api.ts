@@ -2,6 +2,13 @@ export default {
   openURL: import.meta.env.VITE_ANALYTIC_URL,
 };
 
+export const endPointEvents = 'https://localhost:443/api/sdk/events';
+export const endpointSettings = `https://localhost/api/sdk/shop/settings`;
+export const endPointHandles = `https://localhost/api/sdk/products`;
+export function getHandlesApi(id: string | undefined): string {
+  return `${endPointHandles}/${id}/recommendations`;
+}
+
 export const optionGet = {
   method: 'GET',
   headers: {
@@ -16,9 +23,4 @@ export function optionPost(formData: any) {
     },
     body: JSON.stringify(formData),
   }
-}
-
-export const endpointSettings = `https://localhost/api/sdk/shop/settings`;
-export function getHandlesApi(id: string | undefined): string {
-  return `https://localhost/api/sdk/products/${id}/recommendations`;
 }

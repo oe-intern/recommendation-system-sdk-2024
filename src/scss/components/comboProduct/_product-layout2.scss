@@ -6,28 +6,51 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 3% 2.3% !important;
-  border-radius: 1em !important;
+  padding: 2% 1% !important;
+  // border-radius: 1em !important;
+  margin: 1% !important;
 
-  .image {
-    width: 100%;
-    cursor: pointer;
-    align-items: center;
-    aspect-ratio: 1 / 1;
-    border-radius: 0.3em;
-    background-color: white;
+  .img {
+    position: relative;
+    .image {
+      width: 100%;
+      cursor: pointer;
+      align-items: center;
+      aspect-ratio: 1 / 1;
+      border-radius: 0.3em;
+      background-color: white;
+    }
+
+    .sold-out {
+      bottom: 10%;
+      left: -2%;
+      color: white;
+      position: absolute;
+      background-color: red;
+      padding: 0px 9% !important;
+      font: 900 0.9em 'Josefin Sans', sans-serif;
+    }
+
+    .price {
+      right: 2%;
+      top: 3%;
+      font-size: 0.8em;
+      position: absolute;
+      text-align: center;
+    }
   }
 
   .information {
-    width: 110%;
+    width: 100%;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
 
     .name {
       width: 100%;
       line-clamp: 2;
+      font: 500 0.8em 'Josefin Sans', sans-serif;
       cursor: pointer;
       min-height: 3em;  
       max-height: 3em;  
@@ -39,14 +62,7 @@
       text-overflow: ellipsis;
       -webkit-box-orient: vertical;
     }
-
-    .price {
-      font-size: 0.8em;
-      text-align: center;
-    }
-    
     .variant {
-      flex: 1;
       width: 100%;
       cursor: pointer;
       font-size: 0.7em;
@@ -55,15 +71,20 @@
       padding: 1px !important;
       background-color: white;
       border-color: rgba(0, 0, 0, 0.5);
+      // color: white;
+        // text-indent: -999px;
+        // overflow: hidden;
+        // appearance: none;
       
       // .choose {
-      //   color: black;
+      //   color: white;
       // }
     }
   }
   
   .add-to-cart {
-    border: 0;
+    border: 50px !important;
+    background-color: black;
     width: 80%;
     border-radius: 20px;
   }

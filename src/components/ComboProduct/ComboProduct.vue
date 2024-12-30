@@ -17,13 +17,19 @@ div.combo-product
 
 <script setup lang="ts">
 import type { IConfig, IEntry } from '@/types'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 import { request } from '@/services'
 import Product1 from './Product/Product1.vue'
 import Product2 from './Product/Product2.vue'
 console.log('ComboProduct.vue')
 
-const configs = ref<IConfig>({} as IConfig)
+const configs = ref<IConfig>({
+  background_color: '#fff',
+  text_color: '#000',
+  layout: 'Layout1',
+  number_of_items: 3,
+} as IConfig)
+
 const props = defineProps({ id: String });
 const title =  ref('Something special in there');
 const rendered = () => {
@@ -33,26 +39,24 @@ const rendered = () => {
 const product = ref(Product1);
 const layout = ref('list-products');
 
-watch(() => configs.value.layout, (newVal) => {
+function configLayout() {
+  let newVal = configs.value.layout;
   if(newVal === 'Layout1') {
     product.value = Product1;
     layout.value = 'list-products';
-    
-  } else if(newVal === 'Layout2') {
+  } else if(newVal === 'layout2') {
     product.value = Product2;
     layout.value = 'list-products2';
   }
   console.log('layout changed:', newVal)
-})
+}
 const handles = ref<string[]>([])
-// handles.value.push("pendant-earrings");
-// handles.value.push("pendant-earrings");
-// handles.value.push("18k-bloom-earrings");
+handles.value.push("pendant-earrings");
+handles.value.push("pendant-earrings");
+handles.value.push("18k-bloom-earrings");
 import { optionGet, endpointSettings, getHandlesApi } from '@/config';
 
-configs.value.background_color = '#fff';
-configs.value.text_color = '#000';
-configs.value.layout = 'Layout1';
+configLayout();
 
 onMounted(() => {
   request(getHandlesApi(props.id), optionGet)
@@ -73,6 +77,7 @@ onMounted(() => {
     .then((response: { data: IConfig }) => {
       console.log('Config fetched:', response.data)
       Object.assign(configs.value, response.data)
+      configLayout();
     })
     .catch((error: any) => {
       console.error('Error fetching settings:', error)
