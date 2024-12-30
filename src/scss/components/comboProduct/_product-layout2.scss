@@ -6,12 +6,16 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  padding: 3% 2.3% !important;
+  border-radius: 1em !important;
 
   .image {
     width: 100%;
     cursor: pointer;
     align-items: center;
     aspect-ratio: 1 / 1;
+    border-radius: 0.3em;
+    background-color: white;
   }
 
   .information {
@@ -25,6 +29,7 @@
       width: 100%;
       line-clamp: 2;
       cursor: pointer;
+      min-height: 3em;  
       max-height: 3em;  
       overflow: hidden;
       text-align: center;
@@ -46,6 +51,7 @@
       cursor: pointer;
       font-size: 0.7em;
       border-radius: 1em;
+      opacity: 1 !important;
       padding: 1px !important;
       background-color: white;
       border-color: rgba(0, 0, 0, 0.5);

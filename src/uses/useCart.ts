@@ -1,5 +1,5 @@
 import { addToCart } from "@/services";
-import { redirect, getDataUrl, refresh } from "@/services";
+import { redirect, getProductJsonUrl, refresh } from "@/services";
 import axios from 'axios';
 
 const startPoint = 'https://localhost:443'
@@ -29,5 +29,5 @@ export async function productClick(id: number, handle: string) {
   }
   const response = await axios.post(`${startPoint}/api/sdk/events/click`, body)
   console.log('click:', response)
-  redirect(getDataUrl(handle));
+  redirect(getProductJsonUrl(handle));
 }

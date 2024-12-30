@@ -46,35 +46,58 @@ export function request(endpoint: string, options?: Record<string, any>, isIgnor
   });
 }
 
-export function addToCart(pid: number, quantity: number) {
-    const formData = {
-      items: [
-        {
-          id: pid, 
-          quantity: quantity, 
-        },
-      ],
-    };
-    return fetch(window.Shopify.routes.root + 'cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to add item to cart');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Item added to cart:', data);
-        // alert('Product added to cart!');
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        alert('Failed to add product to cart.');
-      });
-}
+import { optionPost } from '@/config';
+// export function addToCart(pid: number, quantity: number) {
+//   const formData = {
+//     items: [
+//       {    alert('You are add all available quantity to cart.');
+//         id: pid, 
+//         quantity: quantity, 
+//       },
+//     ],
+//   };
+//   return fetch(window.Shopify.routes.root + 'cart/add.js', optionPost(formData))
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error('Stop add to cart, this variant is not available');
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       console.log('Item added to cart:', data);
+//       // alert('Product added to cart!');
+//     })
+//     .catch((error) => {
+//       console.error('Error:', error);
+//       alert('Failed to add product to cart.');
+//     });
+// }
 
+export async function addToCart(pid: number, quantity: number): Promise<boolean> {
+  const formData = {
+    items: [
+      {
+        id: pid,
+        quantity: quantity,
+      },
+    ],
+  };
+
+  try {
+    const response = await fetch(window.Shopify.routes.root + 'cart/add.js', optionPost(formData));
+
+    if (!response.ok) {
+      throw new Error('Stop add to cart, this variant is not available');
+    }
+
+    const data = await response.json();
+    console.log('Item added to cart:', data);
+    return true;
+    // alert('Product added to cart!');
+  } catch (error) {
+    console.error('Error:', error);
+    alert('You are add all available quantity to cart.');
+    return false;
+    // alert('Failed to add product to cart.');
+  }
+}
