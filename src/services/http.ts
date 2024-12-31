@@ -26,7 +26,6 @@ function parseJSON(response: any) {
 
 export function request(endpoint: string, options?: Record<string, any>, isIgnoreErrors?: boolean): Promise<any> {
   const defaultHeaders = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
-
   return new Promise((resolve, reject) => {
     const optionRequest = { ...options };
     optionRequest.headers = (options && options.headers) || defaultHeaders;
@@ -47,32 +46,6 @@ export function request(endpoint: string, options?: Record<string, any>, isIgnor
 }
 
 import { optionPost } from '@/config';
-// export function addToCart(pid: number, quantity: number) {
-//   const formData = {
-//     items: [
-//       {    alert('You are add all available quantity to cart.');
-//         id: pid, 
-//         quantity: quantity, 
-//       },
-//     ],
-//   };
-//   return fetch(window.Shopify.routes.root + 'cart/add.js', optionPost(formData))
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error('Stop add to cart, this variant is not available');
-//       }
-//       return response.json();
-//     })
-//     .then((data) => {
-//       console.log('Item added to cart:', data);
-//       // alert('Product added to cart!');
-//     })
-//     .catch((error) => {
-//       console.error('Error:', error);
-//       alert('Failed to add product to cart.');
-//     });
-// }
-
 export async function addToCart(pid: number | undefined, quantity: number): Promise<boolean> {
   const formData = {
     items: [
@@ -87,17 +60,16 @@ export async function addToCart(pid: number | undefined, quantity: number): Prom
     const response = await fetch(window.Shopify.routes.root + 'cart/add.js', optionPost(formData));
 
     if (!response.ok) {
-      throw new Error('Stop add to cart, this variant is not available');
+      throw new Error('Fail add to cart');
     }
 
     const data = await response.json();
     console.log('Item added to cart:', data);
     return true;
-    // alert('Product added to cart!');
   } catch (error) {
     console.error('Error:', error);
-    alert('You are add all available quantity to cart.');
+    // alert('You are add all available quantity to cart.');
+    alert('Cannot add to cart, this variant is not available');
     return false;
-    // alert('Failed to add product to cart.');
   }
 }
