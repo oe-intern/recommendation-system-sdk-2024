@@ -15,7 +15,8 @@
     "deploy:prod": "yarn build:prod; node ./post-build.cjs; cd app-extensions; yarn deploy:prod --path extensions"
   },
   "dependencies": {
-    "vue": "3.5.12"
+    "vue": "3.5.12",
+    "axios": "1.7.9"
   },
   "devDependencies": {
     "@types/node": "^22.7.5",

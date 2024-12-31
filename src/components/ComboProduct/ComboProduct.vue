@@ -16,10 +16,10 @@ div.combo-product
 
 
 <script setup lang="ts">
-import { optionGet, endpointSettings, getHandlesApi } from '@/config';
-import type { IConfig, IEntry } from '@/types'
 import Product1 from './Product/Product1.vue'
 import Product2 from './Product/Product2.vue'
+import { optionGet, endpointSettings, getHandlesApi } from '@/config';
+import type { IConfig, IEntry } from '@/types'
 import { onMounted, ref } from 'vue'
 import { request } from '@/services'
 

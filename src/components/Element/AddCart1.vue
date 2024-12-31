@@ -8,13 +8,13 @@ button.add-to-cart(
 
 
 <script setup lang="ts">
-const emit = defineEmits()
+const emit = defineEmits();
 function clickCart() {
-  emit('addToCart')
+  emit('addToCart');
 }
 </script>
 
 
 <style lang="scss" scoped>
-@use '../../scss/components/element/add-cart1.scss'
+@use '../../scss/components/element/add-cart1.scss';
 </style>

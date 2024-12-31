@@ -27,5 +27,5 @@ import PlaceHolder from '@/components/Element/PlaceHolder.vue';
 
 
 <style lang="scss" scoped>
-@use '../../../../scss/components/comboProduct/skeleton';
+@use '../../../../scss/components/comboProduct/skeleton1';
 </style>

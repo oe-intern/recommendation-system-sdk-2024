@@ -1,6 +1,6 @@
 client_id = "4442f350454cb717f95350a478bdb91f"
 name = "Product Recommendation"
-handle = "product-recommendation-93"
+handle = "product-recommendation-2212"
 application_url = "https://localhost"
 embedded = true
 
@@ -14,23 +14,19 @@ embedded_app_direct_api_access = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_locales,read_orders,read_products,read_themes"
+scopes = "read_locales, read_orders, read_products, read_themes"
 
 [auth]
-redirect_urls = [ "https://localhost/authenticate" ]
+redirect_urls = [
+    "https://localhost/authenticate"
+]
 
 [webhooks]
 api_version = "2024-10"
 
-  [[webhooks.subscriptions]]
-  topics = [
-  "orders/create",
-  "products/create",
-  "products/delete",
-  "products/update",
-  "shop/update"
-]
-  uri = "https://....ngrok-free.app/webhook"
+[[webhooks.subscriptions]]
+topics = ["app/uninstalled","shop/update", "products/create", "products/update", "products/delete"]
+uri = "https://a50e-118-71-116-176.ngrok-free.app/webhook"
 
 [pos]
 embedded = false

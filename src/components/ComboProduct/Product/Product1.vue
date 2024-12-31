@@ -47,6 +47,8 @@ div(
 
 
 <script setup lang="ts">
+import AddCart from '@/components/Element/AddCart1.vue';
+import Skeleton from './Skeleton/ProductSkeleton1.vue';
 import type { IVariantJson, IImageJson, IProductJson, IProductJs, IConfig } from '@/types'
 import { addToCart, redirect, refresh, getStoreProductsUrl, Currency, request, getProductJsonUrl, getProductJsUrl } from '@/services'
 import { computed, defineProps, ref, reactive } from 'vue'
@@ -128,9 +130,6 @@ const opacity = computed(() => {
 });
 
 const dataLoaded = ref('notYet');
-
-import AddCart from '@/components/Element/AddCart.vue';
-import Skeleton from './Skeleton/ProductSkeleton.vue';
 
 request(getProductJsonUrl(handle), optionGet)
   .then((response: { product: IProductJson }) => {
