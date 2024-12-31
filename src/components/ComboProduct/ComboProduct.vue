@@ -16,47 +16,41 @@ div.combo-product
 
 
 <script setup lang="ts">
+import { optionGet, endpointSettings, getHandlesApi } from '@/config';
 import type { IConfig, IEntry } from '@/types'
-import { onMounted, ref } from 'vue'
-import { request } from '@/services'
 import Product1 from './Product/Product1.vue'
 import Product2 from './Product/Product2.vue'
-console.log('ComboProduct.vue')
+import { onMounted, ref } from 'vue'
+import { request } from '@/services'
 
+const props = defineProps({ id: String });
 const configs = ref<IConfig>({
   background_color: '#fff',
   text_color: '#000',
   layout: 'Layout1',
   number_of_items: 3,
-} as IConfig)
+} as IConfig);
 
-const props = defineProps({ id: String });
 const title =  ref('Something special in there');
 const rendered = () => {
   title.value = 'Frequently bought together';
-  console.log("emitted")
 }
-const product = ref(Product1);
+
 const layout = ref('list-products');
+const product = ref(Product1);
 
 function configLayout() {
   let newVal = configs.value.layout;
   if(newVal === 'Layout1') {
     product.value = Product1;
-    layout.value = 'list-products';
+    layout.value = 'list-products1';
   } else if(newVal === 'layout2') {
     product.value = Product2;
     layout.value = 'list-products2';
   }
-  console.log('layout changed:', newVal)
+  console.log('layout changed:', newVal);
 }
-const handles = ref<string[]>([])
-// handles.value.push("pendant-earrings");
-// handles.value.push("pendant-earrings");
-// handles.value.push("18k-bloom-earrings");
-import { optionGet, endpointSettings, getHandlesApi } from '@/config';
-
-configLayout();
+const handles = ref<string[]>([]);
 
 onMounted(() => {
   request(getHandlesApi(props.id), optionGet)

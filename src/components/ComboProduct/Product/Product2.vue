@@ -12,14 +12,14 @@ div.product(
       :alt="image.alt",
       @click="productClick",
     )
-    div.sold-out(
-      v-if="disable",
-    )
-      | sold out
     div.price(
       :style="colorConfig",
     )
       | {{ money }}
+    div.sold-out(
+      v-if="disable",
+    )
+      | sold out
   div.information
     select.variant(
       v-model="selectedVariant",
@@ -46,15 +46,13 @@ div(
 )
 </template>
 
+
 <script setup lang="ts">
 import type { IVariantJson, IImageJson, IProductJson, IProductJs, IConfig } from '@/types'
-import { addToCart, redirect, refresh, getStoreProductsUrl } from '@/services'
+import { addToCart, redirect, refresh, getStoreProductsUrl, Currency, request, getProductJsonUrl, getProductJsUrl } from '@/services'
 import { computed, defineProps, ref, reactive } from 'vue'
+import { endPointEvents, optionGet } from '@/config'
 import axios from 'axios'
-import { Currency } from '@/services'
-import { endPointEvents } from '@/config'
-import { request, getProductJsonUrl, getProductJsUrl } from "@/services";
-import { optionGet } from "@/config";
 
 const { handle, configs } = defineProps<{ handle: string; configs: IConfig }>()
 const product = reactive<IProductJson>({} as IProductJson)
@@ -134,15 +132,6 @@ const dataLoaded = ref('notYet')
 
 import AddCart from '@/components/Element/AddCart.vue';
 import Skeleton from './Skeleton/ProductSkeleton2.vue';
-import data from '../new.json'
-import dataa from '../nn.json'
-
-if(0) {
-  Object.assign(product, data.products[0]);
-  Object.assign(productJs, dataa.product);
-  dataLoaded.value = 'true';
-  emit('rendered');
-}
 
 request(getProductJsonUrl(handle), optionGet)
   .then((response: { product: IProductJson }) => {
@@ -187,10 +176,6 @@ async function clickAddToCart() {
     alert('Error adding to cart, please try again')
   }
 }
-// import { productClick1 } from '@/uses'
-// function productClick() {
-//   productClick1(product.value.id, handle)
-// }
 async function productClick() {
   const body = {
     product_id: product.id,
@@ -206,6 +191,7 @@ async function productClick() {
   }
 }
 </script>
+
 
 <style lang="scss" scoped>
 @use '../../../scss/components/comboProduct/product-layout2';

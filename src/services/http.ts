@@ -68,7 +68,6 @@ export async function addToCart(pid: number | undefined, quantity: number): Prom
     return true;
   } catch (error) {
     console.error('Error:', error);
-    // alert('You are add all available quantity to cart.');
     alert('Cannot add to cart, this variant is not available');
     return false;
   }
