@@ -51,9 +51,9 @@ function configLayout() {
   console.log('layout changed:', newVal)
 }
 const handles = ref<string[]>([])
-handles.value.push("pendant-earrings");
-handles.value.push("pendant-earrings");
-handles.value.push("18k-bloom-earrings");
+// handles.value.push("pendant-earrings");
+// handles.value.push("pendant-earrings");
+// handles.value.push("18k-bloom-earrings");
 import { optionGet, endpointSettings, getHandlesApi } from '@/config';
 
 configLayout();
