@@ -1,36 +1,75 @@
 .product {
-  gap: 2%;
-  width: 30%;
+  width: 43.5%;
   display: flex;
   color: black;
+  font-size: 1.1em;
   align-items: center;
+  margin: 2.5% !important;
   flex-direction: column;
   justify-content: center;
-  padding: 3% 2.3% !important;
-  border-radius: 1em !important;
+  border-radius: 10px !important;
 
-  .image {
+  .img {
     width: 100%;
-    cursor: pointer;
-    align-items: center;
-    aspect-ratio: 1 / 1;
-    border-radius: 0.3em;
-    background-color: white;
+    position: relative;
+    
+    .image {
+      width: 100%;
+      cursor: pointer;
+      object-fit: contain;
+      align-items: center;
+      aspect-ratio: 1 / 1;
+      background-color: white;
+    }
+
+    .price {
+      top: 3%;
+      right: 2%;
+      font-size: 0.7em;
+      position: absolute;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.295);
+    }
+    
+    .sold-out {
+      bottom: 10%;
+      left: -2%;
+      color: white;
+      position: absolute;
+      background-color: red;
+      padding: 1px 9% !important;
+      font: 900 0.95em 'Josefin Sans', sans-serif;
+    }
+
   }
 
   .information {
-    width: 110%;
+    gap: 4%;
+    width: 95%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: 4% !important;
+    margin-bottom: 4% !important;
     justify-content: space-around;
+
+    .variant {
+      width: 90%;
+      cursor: pointer;
+      font-size: 0.7em;
+      border-radius: 1em;
+      opacity: 1 !important;
+      padding: 1px !important;
+      background-color: white;
+      margin-bottom: 4% !important;
+      border-color: rgba(0, 0, 0, 0.5);
+    }
 
     .name {
       width: 100%;
       line-clamp: 2;
       cursor: pointer;
-      min-height: 3em;  
-      max-height: 3em;  
+      min-height: 2.3em;  
       overflow: hidden;
       text-align: center;
       line-height: 1.5em;
@@ -38,42 +77,23 @@
       -webkit-line-clamp: 2;
       text-overflow: ellipsis;
       -webkit-box-orient: vertical;
-    }
-
-    .price {
-      font-size: 0.8em;
-      text-align: center;
-    }
-    
-    .variant {
-      flex: 1;
-      width: 100%;
-      cursor: pointer;
-      font-size: 0.7em;
-      border-radius: 1em;
-      opacity: 1 !important;
-      padding: 1px !important;
-      background-color: white;
-      border-color: rgba(0, 0, 0, 0.5);
-      
-      // .choose {
-      //   color: black;
-      // }
+      font: 500 0.8em 'Josefin Sans', sans-serif;
     }
   }
   
   .add-to-cart {
-    border: 0;
-    width: 80%;
+    width: 60%;
     border-radius: 20px;
+    border: 50px !important;
+    background-color: black;
+    font-size: 0.8em !important;
+    margin-bottom: 7% !important;
+    display: flex;
+    justify-content: center;
   }
-}
 
-.connect{
-  font-size: 2vw;
-  color: rebeccapurple;
-}
-
-.list-products2 .connect:last-of-type {
-  display: none;
+  &:hover{
+    scale: 1.05;
+    transition: ease-in 0.15s;
+  }
 }

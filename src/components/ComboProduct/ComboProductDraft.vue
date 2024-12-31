@@ -6,14 +6,14 @@ div.combo-product
   div(
     :class="configs.layout"
   )
-    list-products(v-if="configs.layout !== 'layout2'")
+    div.list-products(v-if="configs.layout !== 'layout2'")
       product1(
         v-for="(product, index) in products" :key="`view1-${product.id}`"
         :id="'p'+index",
         :product="product", 
         :configs="configs",
       )
-    list-products2(v-else)
+    div.list-products2(v-else)
       product2(
         v-for="product in products" :key="`view2-${product.id}`"
         :product="product", 

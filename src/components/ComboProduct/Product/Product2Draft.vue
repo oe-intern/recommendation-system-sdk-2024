@@ -1,20 +1,17 @@
 <template lang="pug">
   div.product(
-    :style="backgroundColorConfig",
+    :style="{ ...backgroundColorConfig}",
   )
-    img.image(
-      :src="image.src",
-      :alt="image.alt",
-    )
-
-    div.information
-      a.name(
-        :style="colorConfig", 
-      ) 
-        | {{ product.title }}
-      div.price 
+    div.img
+      img.image(
+        :src="image.src",
+        :alt="image.alt",
+      )
+      div.price(
+        :style="colorConfig",
+      )
         | {{ money }}
-
+    div.information
       select.variant(
         v-model="selectedVariant",
       )
@@ -22,14 +19,16 @@
           v-for="variant in product.variants", 
           :key="variant.id", 
           :value="variant.position",
+          :style="colorConfig",
         ) 
           | &nbsp; {{ variant.title }}
-          
-    button.add-to-cart() Add
-  div.connect(
-    style="align-content: center;"
-  ) 
-    | +
+      a.name(
+        :style="colorConfig", 
+      ) 
+        | {{ product.title }}
+    AddCart.add-to-cart(
+    )
+      | {{ "Add" }}
 </template>
 
 <script setup lang="ts">
@@ -57,6 +56,9 @@ const money = computed(() => {
   const price = props.product.variants.find((variant) => variant.position === selectedVariant.value)?.price;
   return price ? `$${price}` : '';
 });
+
+const product = props.product;
+
 
 </script>
 

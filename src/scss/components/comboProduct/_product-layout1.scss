@@ -1,12 +1,25 @@
 .product {
   flex-grow: 1;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   max-width: 100%;
-  padding: 2% !important;
+  position: relative;
+  align-items: center;
+  margin: 1% !important;
   border-radius: 1em !important;
+  justify-content: space-between;
+  padding: 2% 2% 2% 2% !important;
   
+  .sold-out {
+    top: 10%;
+    left: 0%;
+    color: white;
+    rotate: -27deg;
+    position: absolute;
+    background-color: red;
+    padding: 0px 1% !important;
+    font: 900 0.9em 'Josefin Sans', sans-serif;
+  }
+
   .product__attribute {
     gap: 2%;
     width: 80%;
@@ -16,19 +29,16 @@
     
     .image {
       width: 25%;
-      // height: auto;
       cursor: pointer;
       object-fit: contain;
-      // align-items: center;
       aspect-ratio: 1 / 1;
-      // background-color: white;
-      border-radius: 0.3em;
+      border-radius: 0.5em;
+      background-color: white;
     }
 
     .information {
       width: 75%;
       display: flex;
-      // flex-grow: 1;
       flex-direction: column;
       justify-content: space-around;
 
@@ -39,10 +49,6 @@
         white-space: nowrap;
         text-overflow: ellipsis;
       }
-
-      // .price {
-        // font-size: 1.7vh;
-      // }
       
       .variant {
         width: 90%;
@@ -53,9 +59,6 @@
         padding: 1px !important;
         background-color: white;
         border-color: rgba(0, 0, 0, 0.5);
-        // .choose {
-          // font-size: 1em;
-        // }
       }
 
     }
